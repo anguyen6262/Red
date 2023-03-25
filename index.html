@@ -29,7 +29,10 @@
     <!-- This is where we preload all of our audio, images, etc. -->
     <a-assets>
       <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-
+      
+      <!-- Models. -->
+      <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item>
+      <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item>
 
       <!-- Images. -->
       <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
@@ -59,6 +62,10 @@
         animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
       </a-cursor>
     </a-camera>
+
+    <!-- Models. -->
+    <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #ff0000"></a-entity>
+
   </a-scene>
 </body>
 

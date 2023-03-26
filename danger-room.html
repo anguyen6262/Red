@@ -7,6 +7,7 @@
     <title>Red - Danger</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@tagOrCommit/dist/aframe-extras.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -35,7 +36,7 @@
       <!-- Models. -->
       <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity>
       <a-entity gltf-model="#dangerRoom" ></a-entity>
-      <a-entity gltf-model="#spider" ></a-entity>
+      <a-entity gltf-model="#spider" animation-mixer="clip: run_*"></a-entity>
       <a-entity gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" ></a-entity>
       
       

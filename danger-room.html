@@ -12,9 +12,24 @@
     <a-scene>
       <a-assets>
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
+        <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
+        <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
       </a-assets>
+      <a-entity>
+        <a-camera>
+          <a-cursor></a-cursor>
+        </a-camera>
+      </a-entity>
       <a-entity cursor position="0 0 0"></a-entity>
       <a-entity gltf-model="#dangerRoom" ></a-entity>
+      <a-entity gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" ></a-entity>
+      
+      
+      <a-entity cursor position="0 0 -5"></a-entity>
+
+      <!-- <a-entity id="clock-audio" geometry="primitive: plane" material="color: blue"
+          position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity> -->
+      <a-sound src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="0 2 5" loop="true"></a-sound>
     </a-scene>
   </body>
 </html>

@@ -6,16 +6,16 @@
     <meta charset="utf-8">
     <title>Red - Danger</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@tagOrCommit/dist/aframe-extras.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
   </head>
   <body>
     <a-scene>
       <a-assets>
 
         <!-- Models. -->
-        <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item>
-        <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item>
+        <!-- <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item> -->
+        <!-- <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item> -->
 
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
 
@@ -31,16 +31,16 @@
           <a-cursor></a-cursor>
         </a-camera>
       </a-entity>
-      <a-entity cursor position="0 0 0"></a-entity>
+      <!-- <a-entity cursor position="0 0 0"></a-entity> -->
 
       <!-- Models. -->
-      <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity>
+      <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
       <a-entity gltf-model="#dangerRoom" ></a-entity>
-      <a-entity gltf-model="#spider" animation-mixer="clip: run_*"></a-entity>
+      <a-entity gltf-model="#spider" id="spider" animation-mixer></a-entity>
       <a-entity gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" ></a-entity>
       
-      
-      <a-entity cursor position="0 0 -5"></a-entity>
+    
+      <!-- <a-entity cursor position="0 0 -5"></a-entity> -->
 
       <!-- <a-entity id="clock-audio" geometry="primitive: plane" material="color: blue"
           position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity> -->

@@ -7,12 +7,16 @@
   <meta name="description" content="Red">
   <!-- This is the syntax we would use if we wanted to use components located on npm
       unpkg.com/:package@:version/:file -->
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
   <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
   <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
   <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@tagOrCommit/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+  <!-- <script>AFRAME.registerComponent("move",{ -->
+
+
+  
   <script id="plane" type="text/html">
     <a-entity class="link"
       geometry="primitive: plane; height: 1; width: 1"
@@ -34,6 +38,9 @@
       <!-- Models. -->
       <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item>
       <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item>
+      <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
+
+      
 
       <!-- Images. -->
       <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
@@ -54,6 +61,7 @@
       <a-entity template="src: #plane" data-src="#city" data-thumb="#city-thumb"></a-entity>
       <a-entity template="src: #plane" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
       <a-entity template="src: #plane" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+      <a-entity gltf-model="#spider" id="spider" animation-mixer></a-entity>
     </a-entity>
 
     <!-- Camera + Cursor. -->
@@ -65,7 +73,8 @@
     </a-camera>
 
     <!-- Models. -->
-    <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #ff0000" animation-mixer></a-entity>
+    <a-entity gltf-model="#spider" animation-mixer position></a-entity>
+    <
 
   </a-scene>
 </body>

@@ -29,12 +29,12 @@
             let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
             let spider = document.querySelector('#alarm-sound') //reference to the spider
 
-            if(method == "clock" || cliclTime == 0){
+            if(method == "clock" || clickTime == 0){
               speaker.components.sound.stopSound() // stops ticking sound
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);
               function codingCourse() {
-                if (cliclTime == 0) {
+                if (clickTime == 0) {
                   console.log("alarm playing");
                   alarmAudio.components.sound.playSound()
                 }
@@ -42,8 +42,9 @@
               }
             }
             // stop alarm sound after first click
-            if(method == "clock-siuu" || clickTime > 0){
+            if(method == "clock" || clickTime > 0){
               alarmAudio.components.sound.stopSound()
+              spider.setAttribute('animation',{autoplay:true})
             }
           })
         }
@@ -77,12 +78,12 @@
           <a-cursor></a-cursor>
         </a-camera>
       </a-entity>
-      <a-entity cursor position="0 0 0"></a-entity>
+      <!-- <a-entity cursor position="0 0 0"></a-entity> -->
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
       <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
-      <a-entity id="spider" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" stop-animation animation-mixer animation="property:position; dur:5000; to: -16 0 0; delay: 7000; " animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000; " ></a-entity>
+      <a-entity id="spider" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" stop-animation animation-mixer animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;" ></a-entity>
       <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity>
       <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
       <!-- lamp that is further -->
@@ -91,11 +92,11 @@
       <!-- Lamp that is close -->
       <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-12 1.67359 1.5" animation="property: position; to: -12 1.67359 0.2; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
       <a-entity gltf-model="#lamp" position="-12 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" rotation="0 180 0"></a-entity>
-      
+      <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-entity>
       <!-- <a-entity geometry="primitive: plane" material="color: blue" 
           position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity>  -->
-          <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
-          <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
     </a-scene>
   </body>
 </html>

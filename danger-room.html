@@ -30,6 +30,7 @@
 
         <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
         <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
+        <a-asset-item id="eggs" src="assets/eggs/scene.gltf"></a-asset-item>
 
         <!-- Audio. -->
         <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
@@ -44,8 +45,9 @@
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
-      <a-entity gltf-model="#dangerRoom" position="0 0 0d"></a-entity>
-      <a-entity gltf-model="#spider" scale="0.25 0.25 0.25" rotation="0 270 0" position="0 0 -10" stop-animation animation-mixer animation="property:position; dur:7000; from: 75 0 0; to: 0 0 0" ></a-entity>
+      <a-entity gltf-model="#dangerRoom" position="0 0 0"></a-entity>
+      <!-- <a-entity gltf-model="#spider" scale="0.25 0.25 0.25" rotation="0 270 0" stop-animation animation-mixer animation="property:position; dur:7000; from: 75 0 0; to: 0 0 0" ></a-entity> -->
+      <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity>
       <a-entity gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" ></a-entity>
       
     

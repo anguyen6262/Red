@@ -8,6 +8,15 @@
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script>
+      AFRAME.registerComponent('stop-animation', {
+        init: function () {
+          this.el.addEventListener("animationcomplete", ()=> {
+          this.el.setAttribute('animation-mixer',{timeScale:0})
+          })
+        }
+      });
+    </script>
   </head>
   <body>
     <a-scene>
@@ -35,8 +44,8 @@
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
-      <a-entity gltf-model="#dangerRoom" ></a-entity>
-      <a-entity gltf-model="#spider" id="spider" animation-mixer></a-entity>
+      <a-entity gltf-model="#dangerRoom" position="0 0 0d"></a-entity>
+      <a-entity gltf-model="#spider" scale="0.25 0.25 0.25" rotation="0 270 0" position="0 0 -10" stop-animation animation-mixer animation="property:position; dur:7000; from: 75 0 0; to: 0 0 0" ></a-entity>
       <a-entity gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" ></a-entity>
       
     

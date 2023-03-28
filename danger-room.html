@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -62,11 +59,7 @@
       <a-assets>
 
         <!-- Models. -->
-        <!-- <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item> 
-        setTimeout(()=> {
-                    spider.setAttribute('animation-mixer',{timeScale:1})
-                    spider.components.animation.play()},500);-->
-        <!-- <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item> -->
+      
 
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
         <img id="redImage" src="assets/redImage.jpeg"/>
@@ -89,9 +82,7 @@
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
-      <!-- <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
-
-      <!--  -->
+      <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
 
       <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" animation-mixer stop-animation animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;"></a-entity>
       <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->

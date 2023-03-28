@@ -14,10 +14,12 @@
       AFRAME.registerComponent('stop-animation', {
         init: function () {
           this.el.addEventListener("animationcomplete", ()=> {
-          this.el.setAttribute('animation-mixer',{timeScale:0})
+              this.el.setAttribute('animation-mixer',{timeScale:0})
+              setTimeout(()=>this.el.setAttribute('animation-mixer',{timeScale:1}),4000)
+            })
+          }  
           })
-        }
-      });
+        
       
       //Function that handles the sounds
       AFRAME.registerComponent('soundcontroller', {
@@ -31,8 +33,6 @@
             if(method == "clock" || clickTime == 0){
               speaker.components.sound.stopSound()
             // stops ticking sound
-              spider.setAttribute('animation-mixer',{timeScale:0})
-              spider.components.animation.pause();
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);
               function codingCourse() {
@@ -40,9 +40,7 @@
                   console.log("alarm playing");
                   alarmAudio.components.sound.playSound()
                   
-                  setTimeout(()=> {
-                    spider.setAttribute('animation-mixer',{timeScale:1})
-                    spider.components.animation.play()},500);
+                  
                 }
                 clickTime +=1
               }
@@ -50,7 +48,6 @@
             // stop alarm sound after first click
             if(method == "clock" || clickTime > 0){
               alarmAudio.components.sound.stopSound()
-              
             }
           })
         }
@@ -64,7 +61,10 @@
       <a-assets>
 
         <!-- Models. -->
-        <!-- <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item> -->
+        <!-- <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item> 
+        setTimeout(()=> {
+                    spider.setAttribute('animation-mixer',{timeScale:1})
+                    spider.components.animation.play()},500);-->
         <!-- <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item> -->
 
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
@@ -88,11 +88,11 @@
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
-      <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
+      <!-- <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
 
-      <!-- animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;" -->
+      <!--  -->
 
-      <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" stop-animation animation-mixer animation="property:position; dur:10000; to: 0 0 0; delay: 3000;" ></a-entity>
+      <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" animation-mixer stop-animation animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;"></a-entity>
       <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->
       <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
       <!-- Light for just seeing the alarm clock -->

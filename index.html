@@ -1,82 +1,107 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Red - Danger</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script>
+      let clickTime = 0; // variable to prevent the alarm from playing more than one time
 
-<head>
-  <meta charset="utf-8">
-  <title>Red</title>
-  <meta name="description" content="Red">
-  <!-- This is the syntax we would use if we wanted to use components located on npm
-      unpkg.com/:package@:version/:file -->
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
-  
-  <script>
-    AFRAME.registerComponent('stop-animation', {
-      init: function () {
-        this.el.addEventListener("animationcomplete", ()=> {
-        this.el.setAttribute('animation-mixer',{timeScale:0})
-        })
-      }
-    });
-  </script>
-</head>
-<body>
-  <a-scene>
-    <!-- This is where we preload all of our audio, images, etc. -->
-    <a-assets>
-      <script id="plane" type="text/html">
-        <a-entity class="link"
-          geometry="primitive: plane; height: 1; width: 1"
-          material="shader: flat; src: ${thumb}"
-          sound="on: click; src: #click-sound"
-          event-set__mouseenter="scale: 1.2 1.2 1"
-          event-set__mouseleave="scale: 1 1 1"
-          event-set__click="_target: #image-360; _delay: 300; material.src: ${src}"
-          proxy-event="event: click; to: #image-360; as: fade"></a-entity>
-      </script>
-      <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+      AFRAME.registerComponent('stop-animation', {
+        init: function () {
+          this.el.addEventListener("animationcomplete", ()=> {
+              this.el.setAttribute('animation-mixer',{timeScale:0})
+              setTimeout(()=>this.el.setAttribute('animation-mixer',{timeScale:1}),4000)
+            })
+          }  
+          })
+        
       
+      //Function that handles the sounds
+      AFRAME.registerComponent('soundcontroller', {
+        init: function () {
+          let controlButton = this.el;
+          controlButton.addEventListener("click", function (ev) {
+            let method = ev.srcElement.id; //current element selected
+            let speaker = document.querySelector('#clock-sound') //reference to the ticking sound
+            let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
+            let spider = document.querySelector('#spiderModel') //reference to the spider
+            if(method == "clock" || clickTime == 0){
+              speaker.components.sound.stopSound()
+            // stops ticking sound
+              // function that makes the alarm sound automatically play
+              setInterval(codingCourse, 3000);
+              function codingCourse() {
+                if (clickTime == 0) {
+                  console.log("alarm playing");
+                  alarmAudio.components.sound.playSound()
+                  
+                  
+                }
+                clickTime +=1
+              }
+            }
+            // stop alarm sound after first click
+            if(method == "clock" || clickTime > 0){
+              alarmAudio.components.sound.stopSound()
+            }
+          })
+        }
+      })
+
+
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+
+        <!-- Models. -->
+      
+
+        <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
+        <img id="redImage" src="assets/redImage.jpeg"/>
+        <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
+        <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
+        <a-asset-item id="eggs" src="assets/eggs/scene.gltf"></a-asset-item>
+        <a-asset-item id="lamp" src="assets/lamp/scene.gltf"></a-asset-item>
+
+
+        <!-- Audio. -->
+        <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
+
+      </a-assets>
+      <a-entity>
+        <a-camera>
+          <a-cursor material="color:#FFFFFF"></a-cursor>
+        </a-camera>
+      </a-entity>
+      <!-- <a-entity cursor position="0 0 0"></a-entity> -->
+
       <!-- Models. -->
-      <a-asset-item id="spider-obj" src="3Dassets\spider.obj"></a-asset-item>
-      <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item>
-      <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
+      <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
+      <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
 
-      <!-- Images. -->
-      <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-      <img id="city-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-      <img id="cubes" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-      <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-      <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-      <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-    </a-assets>
+      <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" animation-mixer stop-animation animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;"></a-entity>
+      <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->
+      <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
+      <!-- Light for just seeing the alarm clock -->
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-2.009 2 2.064" ></a-entity>
 
-    <!-- 360-degree image. -->
-    <a-sky id="image-360" radius="10" src="#city"
-      animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
-      animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
-
-    <!-- Link template we will build. -->
-    <a-entity id="links" layout="type: line; margin: 1.5" position="-3 -1 -4">
-      <a-entity template="src: #plane" data-src="#city" data-thumb="#city-thumb"></a-entity>
-      <a-entity template="src: #plane" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-      <a-entity template="src: #plane" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-    </a-entity>
-
-    <!-- Camera + Cursor. -->
-    <a-camera>
-      <a-cursor id="cursor"
-        animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
-        animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
-      </a-cursor>
-    </a-camera>
-
-    <!-- Models. -->
-    <a-entity gltf-model="#spider" stop-animation animation-mixer animation="property:position; dur:10000; from: 0 0 0; to: 0 100 0" ></a-entity>
-
-  </a-scene>
-</body>
+      <!-- lamp that is further -->
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-20 1.67359 0.2" animation="property: position; to: -20 1.67359 1.5; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
+      <a-entity gltf-model="#lamp" position="-18 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" ></a-entity>
+      <!-- Lamp that is close -->
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-12 1.67359 1.5" animation="property: position; to: -12 1.67359 0.2; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
+      <a-entity gltf-model="#lamp" position="-12 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" rotation="0 180 0"></a-entity>
+      <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-entity>
+      <!-- <a-entity geometry="primitive: plane" material="color: blue" 
+          position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity>  -->
+      <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <a-sky src="assets/redImage.jpeg"></a-sky>
+    </a-scene>
+  </body>
 </html>

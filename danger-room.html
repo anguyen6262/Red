@@ -62,7 +62,7 @@
         <!-- <a-asset-item id="spider-mtl" src="3Dassets\spider.mtl"></a-asset-item> -->
 
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
-
+        <img id="redImage" src="assets/redImage.jpeg"/>
         <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
         <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
         <a-asset-item id="eggs" src="assets/eggs/scene.gltf"></a-asset-item>
@@ -84,7 +84,7 @@
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
       <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
       <a-entity id="spider" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" stop-animation animation-mixer animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;" ></a-entity>
-      <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity>
+      <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->
       <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
       <!-- lamp that is further -->
       <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-20 1.67359 0.2" animation="property: position; to: -20 1.67359 1.5; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
@@ -97,6 +97,7 @@
           position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity>  -->
       <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
       <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <a-sky src="assets/redImage.jpeg"></a-sky>
     </a-scene>
   </body>
 </html>

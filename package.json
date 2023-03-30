@@ -21,6 +21,7 @@
     "vr"
   ],
   "dependencies": {
-    "aframe-extras.object-model": "^6.1.1"
+    "aframe-extras.object-model": "^6.1.1",
+    "howler": "^2.2.3"
   }
 }

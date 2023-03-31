@@ -18,7 +18,7 @@
 
       const alarm = new Howl({
         src:['assets/audio/alarm-clock-sound.mp3'],
-        autoplay:true, 
+        autoplay:false, 
         pos:[1.98666, 0.91235, 2.08887],
         loop:true
       })
@@ -41,7 +41,7 @@
             let speaker = document.querySelector('#clockModel') //reference to the ticking sound
            // let alarmAudio = document.querySelector('#alarmModel') //reference to the alarm sound
             let spider = document.querySelector('#spiderModel') //reference to the spider
-            if(method == "clockModel" || clickTime == 0){
+            if(method == "clockModel" && clickTime == 0){
               //speaker.components.sound.stopSound()
               clock.stop()
             // stops ticking sound
@@ -52,16 +52,15 @@
                   console.log("alarm playing");
                  // alarmAudio.components.sound.playSound()
                  alarm.play()
-                  
-                  
                 }
                 clickTime +=1
               }
             }
             // stop alarm sound after first click
-            if(method == "clock" || clickTime > 0){
+            if(method == "clockModel" && clickTime > 0){
               //alarmAudio.components.sound.stopSound()
               alarm.stop()
+              setTimeout(() => clock.play(), 3000)
             }
           })
         }

@@ -31,13 +31,11 @@
           let controlButton = this.el;
           controlButton.addEventListener("click", function (ev) {
             let method = ev.srcElement.id; //current element selected
-            clock.play();
-            //let speaker = document.querySelector('#clock-sound') //reference to the ticking sound
+            let speaker = document.querySelector('#clock-sound') //reference to the ticking sound
             let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
             let spider = document.querySelector('#spiderModel') //reference to the spider
             if(method == "clock" || clickTime == 0){
-              clock.stop();
-              //speaker.components.sound.stopSound()
+              speaker.components.sound.stopSound()
             // stops ticking sound
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);

@@ -10,6 +10,20 @@
     <script>
       let clickTime = 0; // variable to prevent the alarm from playing more than one time
 
+      const clock = new Howl({
+        src:['assets/audio/clock-ticking.mp3'],
+        autoplay: true, 
+        pos:[-1.98666, 0.91235, 2.08887],
+        loop:true
+      })
+
+      const alarm = new Howl({
+        src:['assets/audio/alarm-clock-sound.mp3'],
+        autoplay:false, 
+        pos:[1.98666, 0.91235, 2.08887],
+        loop:true
+      })
+
       AFRAME.registerComponent('stop-animation', {
         init: function () {
           this.el.addEventListener("animationcomplete", ()=> {
@@ -26,18 +40,18 @@
           let controlButton = this.el;
           controlButton.addEventListener("click", function (ev) {
             let method = ev.srcElement.id; //current element selected
-            let speaker = document.querySelector('#clock-sound') //reference to the ticking sound
-            let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
+            let speaker = document.querySelector('#clockModel') //reference to the ticking sound
+           // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
             let spider = document.querySelector('#spiderModel') //reference to the spider
-            if(method == "clock" || clickTime == 0){
-              speaker.components.sound.stopSound()
+            if(method == "clockModel" && clickTime == 0){
+              clock.stop()
             // stops ticking sound
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);
               function codingCourse() {
                 if (clickTime == 0) {
                   console.log("alarm playing");
-                  alarmAudio.components.sound.playSound()
+                  alarm.play()
                   
                   
                 }
@@ -45,8 +59,8 @@
               }
             }
             // stop alarm sound after first click
-            if(method == "clock" || clickTime > 0){
-              alarmAudio.components.sound.stopSound()
+            if(method == "clockModel" && clickTime > 0){
+              alarm.stop()
             }
           })
         }
@@ -95,7 +109,7 @@
 
       <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" animation-mixer stop-animation animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;"></a-entity>
       <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->
-      <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
+      <a-entity id="clockModel" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
       <!-- Light for just seeing the alarm clock -->
       <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-2.009 2 2.064" ></a-entity>
 
@@ -108,9 +122,9 @@
       <!-- <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-entity> -->
       <!-- <a-entity geometry="primitive: plane" material="color: blue" 
           position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity>  -->
-      <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
+      <!-- <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
       <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
-      <a-sky src="assets/redImage.jpeg"></a-sky>
+      <a-sky src="assets/redImage.jpeg"></a-sky> -->
     </a-scene>
   </body>
 </html>

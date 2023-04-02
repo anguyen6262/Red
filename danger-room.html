@@ -5,9 +5,24 @@
     <title>Red - Danger</title>
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
     <script>
       let clickTime = 0; // variable to prevent the alarm from playing more than one time
+
+      const clock = new Howl({
+        src:['assets/audio/clock-ticking.mp3'],
+        autoplay: true, 
+        pos:[-1.98666, 0.91235, 2.08887],
+        loop:true
+      })
+
+      const alarm = new Howl({
+        src:['assets/audio/alarm-clock-sound.mp3'],
+        autoplay:false, 
+        pos:[1.98666, 0.91235, 2.08887],
+        loop:true
+      })
 
       AFRAME.registerComponent('stop-animation', {
         init: function () {
@@ -25,32 +40,46 @@
           let controlButton = this.el;
           controlButton.addEventListener("click", function (ev) {
             let method = ev.srcElement.id; //current element selected
-            let speaker = document.querySelector('#clock-sound') //reference to the ticking sound
-            let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
+            let speaker = document.querySelector('#clockModel') //reference to the ticking sound
+           // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
             let spider = document.querySelector('#spiderModel') //reference to the spider
-            if(method == "clock" || clickTime == 0){
-              speaker.components.sound.stopSound()
+            if(method == "clockModel" && clickTime == 0){
+              clock.stop()
             // stops ticking sound
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);
               function codingCourse() {
                 if (clickTime == 0) {
                   console.log("alarm playing");
-                  alarmAudio.components.sound.playSound()
-                  
-                  
+                  alarm.play()
                 }
                 clickTime +=1
               }
             }
             // stop alarm sound after first click
-            if(method == "clock" || clickTime > 0){
-              alarmAudio.components.sound.stopSound()
+            if(method == "clockModel" && clickTime > 0){
+              alarm.stop()
             }
           })
         }
       })
 
+      AFRAME.registerComponent('change-position', {
+        init: function () {
+          const user = document.querySelector('#user-camera')
+          this.el.addEventListener("click", (evt)=> {
+              let clickedObj = evt.srcElement.id; 
+              let x = evt.detail.intersection.point.x;
+              let [userX, userY, userZ] = user.getAttribute("position")
+              let newPosition = x.toString() + " " + userY + " " + userZ ;
+
+              if (clickedObj == "change-position") {
+                user.setAttribute('position', newPosition)
+                console.log(user.getAttribute("position"));
+              }
+            })
+          }  
+        })
 
     </script>
   </head>
@@ -59,8 +88,6 @@
       <a-assets>
 
         <!-- Models. -->
-      
-
         <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
         <img id="redImage" src="assets/redImage.jpeg"/>
         <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
@@ -73,35 +100,54 @@
         <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
 
       </a-assets>
-      <a-entity>
-        <a-camera>
-          <a-cursor material="color:#FFFFFF"></a-cursor>
+      
+      <!-- Camera and cursor -->
+      <a-entity id="user-camera" rotation="0 90 0" position="0 0 0.6">
+        <a-camera  camera look-controls position="0 1.6 0" >
+          <a-entity cursor="fuse: true; fuseTimeout:2000"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: white; shader: flat"
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2500; from: 1 1 1; to: 0.1 0.1 0.1"
+            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+          </a-entity>
         </a-camera>
       </a-entity>
-      <!-- <a-entity cursor position="0 0 0"></a-entity> -->
 
       <!-- Models. -->
       <!-- <a-entity obj-model="obj: 3Dassets\spider.obj; mtl: 3Dassets\spider.mtl" scale="50 50 50" id="spider" material="color: #393885"></a-entity> -->
       <a-entity gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
 
       <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-24.1526 0.52597 0.37798" animation-mixer stop-animation animation="property:position; dur:5000; to: -16 0 0; delay: 3000;" animation__2="property:position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;"></a-entity>
-      <!-- <a-entity gltf-model="#eggs"  position="0 0 -10"></a-entity> -->
-      <a-entity id="clock" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
+      <a-entity id="clockModel" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller ></a-entity>
       <!-- Light for just seeing the alarm clock -->
       <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-2.009 2 2.064" ></a-entity>
 
       <!-- lamp that is further -->
-      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-20 1.67359 0.2" animation="property: position; to: -20 1.67359 1.5; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
-      <a-entity gltf-model="#lamp" position="-18 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" ></a-entity>
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-20 1.57719 0.2" animation="property: position; to: -20 1.67359 1.2; dur: 3000; easing: linear; loop: true; dir: alternate; delay:200" penumbra="0.5" distance="50"></a-entity>
+      <a-entity gltf-model="#lamp" position="-20 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" ></a-entity>
+      <!-- Lamp that is in the middle -->
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-14 1.57719 1.2" animation="property: position; to: -14 1.67359 0.2; dur: 3000; easing: linear; loop: true; dir: alternate; delay:200" penumbra="0.5" distance="50"></a-entity>
+      <a-entity gltf-model="#lamp" position="-14 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" rotation="0 180 0"></a-entity>
       <!-- Lamp that is close -->
-      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-12 1.67359 1.5" animation="property: position; to: -12 1.67359 0.2; dur: 3000; easing: linear; loop: true; dir: alternate" penumbra="0.5" distance="50"></a-entity>
-      <a-entity gltf-model="#lamp" position="-12 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6" rotation="0 180 0"></a-entity>
-      <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-entity>
-      <!-- <a-entity geometry="primitive: plane" material="color: blue" 
-          position="-10 0 0" sound="src: #clock-ticking; autoplay: true"></a-entity>  -->
-      <a-sound id="clock-sound" src="src:url(/assets/audio/clock-ticking.mp3)" autoplay="true" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
-      <a-sound id="alarm-sound" src="src:url(/assets/audio/alarm-clock-sound.mp3)" autoplay="false" position="-1.98666 0.91235 2.08887" loop="true"></a-sound>
-      <a-sky src="assets/redImage.jpeg"></a-sky>
+      <a-entity light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-8 1.57719 0.2" animation="property: position; to: -8 1.67359 1.2; dur: 3000; easing: linear; loop: true; dir: alternate; delay:200" penumbra="0.5" distance="50"></a-entity>
+      <a-entity gltf-model="#lamp" position="-8 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6"></a-entity>
+      
+      <!-- Asset to change further -->  
+      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-22 2.2 0.5" animation="property: position; to: -22 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity id="change-position" geometry="primitive: cylinder" position="-22 0.0210.5"  scale="0.8 0.1 0.8"  change-position > </a-entity>
+      
+      <!-- Asset to change middle -->  
+      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-10 2.2 0.5" animation="property: position; to: -10 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate " change-position></a-entity>
+      <a-entity id="change-position" geometry="primitive: cylinder" position="-10 0.021 0.5"  scale=".8 0.1 0.8" change-position > </a-entity>
+      
+      <!-- Asset to change close  -->  
+      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0.5" animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0.5" change-position > </a-entity>
+
+
+      <a-sky src="assets/redImage.jpeg"></a-sky> 
     </a-scene>
   </body>
 </html>

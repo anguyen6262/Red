@@ -9,6 +9,14 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
     <script>
       let clickTime = 0; // variable to prevent the alarm from playing more than one time
+      
+      const soundListener = new THREE.AudioListener();
+      camera.add(soundListener)
+      
+
+      //function updateSound(){
+        //let distance = 
+      //}
       const clock = new Howl({
         src:['assets/audio/clock-ticking.mp3'],
         autoplay: true, 
@@ -44,6 +52,7 @@
             if(method == "clockModel" && clickTime == 0){
               //speaker.components.sound.stopSound()
               clock.stop()
+              console.log(soundListener)
             // stops ticking sound
               // function that makes the alarm sound automatically play
               setInterval(codingCourse, 3000);

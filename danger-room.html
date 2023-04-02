@@ -24,6 +24,11 @@
         loop:true
       })
 
+      function startAudio () {
+        clock;
+        console.log("siuuuuuuuuuuuuuu");
+      }
+
       AFRAME.registerComponent('stop-animation', {
         init: function () {
           this.el.addEventListener("animationcomplete", ()=> {
@@ -86,7 +91,7 @@
 
     </script>
   </head>
-  <body>
+  <body onload="startAudio();">
     <a-scene>
       <a-assets>
 

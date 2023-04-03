@@ -72,8 +72,8 @@
       AFRAME.registerComponent('change-position', {
         init: function () {
           const user = document.querySelector('#user-camera')
-          this.el.addEventListener("click", (evt)=> {
-              let clickedObj = evt.srcElement.id; // get object that was clicked
+          this.el.addEventListener("touchStart", (evt)=> {
+              let clickedObj = evt.srcElement.class; // get object that was clicked
               let x = evt.detail.intersection.point.x; // get x position of the asset to move to
               let [userX, userY, userZ] = user.getAttribute("position") // get user current position
               let userPos = userX + " " + userY + " " + userZ //change position to string
@@ -111,12 +111,11 @@
       <!-- Camera and cursor -->
       <a-entity id="user-camera" rotation="0 0 0" position="-10 0 0.6">
         <a-camera  camera look-controls position="0 1.6 0" >
-          <a-entity cursor="fuse: true; fuseTimeout:2000"
+          <a-entity cursor
             position="0 0 -1"
             geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
             material="color: white; shader: flat"
             animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2500; from: 1 1 1; to: 0.1 0.1 0.1"
             animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
           </a-entity>
         </a-camera>
@@ -141,16 +140,16 @@
       <a-entity gltf-model="#lamp" position="-8 1.57719 0.6" animation-mixer scale="0.6 0.6 0.6"></a-entity>
       
       <!-- Asset to change position - further -->  
-      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-22 2.2 0.5" animation="property: position; to: -22 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
-      <a-entity id="change-position" geometry="primitive: cylinder" position="-22 0.021 0.5"  scale="0.8 0.1 0.8"  change-position > </a-entity>
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-22 2.2 0.5" animation="property: position; to: -22 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" position="-22 0.021 0.5"  scale="0.8 0.1 0.8"  change-position > </a-entity>
       
       <!-- Asset to change position - middle -->  
-      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-10 2.2 0.5" animation="property: position; to: -10 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate " change-position></a-entity>
-      <a-entity id="change-position" geometry="primitive: cylinder" position="-10 0.021 0.5"  scale=".8 0.1 0.8" change-position > </a-entity>
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-10 2.2 0.5" animation="property: position; to: -10 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate " change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" position="-10 0.021 0.5"  scale=".8 0.1 0.8" change-position > </a-entity>
       
       <!-- Asset to change position - close  -->  
-      <a-entity id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0.5" animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
-      <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0.5" change-position > </a-entity>
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0.5" animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0.5" change-position > </a-entity>
 
       <a-image src="#sign2"  position="-9.4 1.6 -1.045" material="color: #161313"></a-image>
       <a-sky src="assets/redImage.jpeg"></a-sky> 

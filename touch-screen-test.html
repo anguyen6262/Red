@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script src="path/to/Tocca.js"></script>
     <script>
       let clickTime = 0; // variable to prevent the alarm from playing more than one time
 
@@ -42,7 +43,7 @@
       AFRAME.registerComponent('soundcontroller', {
         init: function () {
           let controlButton = this.el;
-          controlButton.addEventListener("click", function (ev) {
+          controlButton.addEventListener("tap", function (ev) {
             let method = ev.srcElement.id; //current element selected
             let speaker = document.querySelector('#clockModel') //reference to the ticking sound
            // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
@@ -75,7 +76,7 @@
           this.el.addEventListener("onhover", (evt)=> {
             user.setAttribute('material',{color:red, shader:flat})
           })
-          this.el.addEventListener("touchStart", (evt)=> {
+          this.el.addEventListener("tap", (evt)=> {
               let clickedObj = evt.srcElement.class; // get object that was clicked
               let x = evt.detail.intersection.point.x; // get x position of the asset to move to
               let [userX, userY, userZ] = user.getAttribute("position") // get user current position

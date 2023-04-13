@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "aframe-extras.object-model": "^6.1.1",
-    "howler": "^2.2.3"
+    "howler": "^2.2.3",
+    "tocca": "^2.0.9"
   }
 }

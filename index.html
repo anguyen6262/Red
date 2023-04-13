@@ -7,66 +7,8 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
-    <script>
-      let clickTime = 0; // variable to prevent the alarm from playing more than one time
-
-      const clock = new Howl({
-        src:['assets/audio/clock-ticking.mp3'],
-        autoplay: true, 
-        pos:[-1.98666, 0.91235, 2.08887],
-        loop:true
-      })
-
-      const alarm = new Howl({
-        src:['assets/audio/alarm-clock-sound.mp3'],
-        autoplay:false, 
-        pos:[1.98666, 0.91235, 2.08887],
-        loop:true
-      })
-
-      AFRAME.registerComponent('stop-animation', {
-        init: function () {
-          this.el.addEventListener("animationcomplete", ()=> {
-              this.el.setAttribute('animation-mixer',{timeScale:0})
-              setTimeout(()=>this.el.setAttribute('animation-mixer',{timeScale:1}),4000)
-            })
-          }  
-          })
-        
+    <script src="index.js">
       
-      //Function that handles the sounds
-      AFRAME.registerComponent('soundcontroller', {
-        init: function () {
-          let controlButton = this.el;
-          controlButton.addEventListener("click", function (ev) {
-            let method = ev.srcElement.id; //current element selected
-            let speaker = document.querySelector('#clockModel') //reference to the ticking sound
-           // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
-            let spider = document.querySelector('#spiderModel') //reference to the spider
-            if(method == "clockModel" && clickTime == 0){
-              clock.stop()
-            // stops ticking sound
-              // function that makes the alarm sound automatically play
-              setInterval(codingCourse, 3000);
-              function codingCourse() {
-                if (clickTime == 0) {
-                  console.log("alarm playing");
-                  alarm.play()   
-                }
-                clickTime +=1
-              }
-            }
-            // stop alarm sound after first click
-            if(method == "clockModel" && clickTime > 0){
-              alarm.stop()
-              spider.setAttribute("animation", "property: position; to: -16 0 0; dur: 4000;")
-              spider.setAttribute("animation__2", "property: position; dur:3000; from: -16 0 0; to: 0 0 0; delay: 12000;")
-            }
-          })
-        }
-      })
-
-
     </script>
   </head>
   <body>

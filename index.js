@@ -1,5 +1,4 @@
-let clickTime = 0; // variable to prevent the alarm from playing more than one time
-
+let CLICK_TIME = 0; // variable to prevent the alarm from playing more than one time
 let ROOM_COLOR = "#ffffff"; //global variable
 
 // Changing global variable
@@ -7,13 +6,10 @@ AFRAME.registerComponent("set-color", {
   init: function () {
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
-        localStorage.setItem(ROOM_COLOR, evt.target.getAttribute("color"));
-        // ROOM_COLOR = evt.target.getAttribute("color");
+        ROOM_COLOR= evt.target.getAttribute("color");
+        console.log("setting color to:", ROOM_COLOR);
       }
-      console.log(ROOM_COLOR);
-      setColor(); // setting everything with the class name `changeLight` to the new color
     });
-    console.log("setting color");
   },
 });
 
@@ -22,12 +18,43 @@ const setColor = () => {
   const lightSources = Array.from(document.querySelectorAll(".changeLight"));
   lightSources.map((elem) => {
     if (elem.hasAttribute("light")) {
-      elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
-      // console.log("si paso");
+      elem.setAttribute("light", { color: ROOM_COLOR });
     }
   });
-  console.log("setting color", ROOM_COLOR);
 };
+
+
+AFRAME.registerComponent("change-scene", {
+  init: function () {
+    this.el.addEventListener("click", () => {
+      const scences = Array.from(document.querySelectorAll(".scene"));
+      console.log("entro");
+        scences.map(scene => {
+          if (this.el.getAttribute("class") == scene.getAttribute("id")) {
+            scene.setAttribute("visible", "true")
+            console.log("Changing room", scene.getAttribute("id"));
+          } else {
+            scene.setAttribute("visible", "false")
+          }
+        })
+        setColor();
+    });
+
+    // Stops clock from automatically playing in desktop when starting in home
+    switch(this.el.getAttribute("class")) {
+      case "homeScene":
+        clock.stop();
+        break;
+      case "dangerScene":
+        clock.play();
+        break;
+      default:
+        clock.stop();;
+    };
+
+    
+  },
+});
 
 const clock = new Howl({
   src: ["assets/audio/clock-ticking.mp3"],
@@ -43,9 +70,6 @@ const alarm = new Howl({
   loop: true,
 });
 
-function startAudio() {
-  clock.play();
-}
 
 AFRAME.registerComponent("stop-animation", {
   init: function () {
@@ -64,25 +88,27 @@ AFRAME.registerComponent("soundcontroller", {
   init: function () {
     let controlButton = this.el;
     controlButton.addEventListener("click", function (ev) {
-      let method = ev.srcElement.id; //current element selected
+      let currElem = ev.srcElement.id; //current element selected
       let speaker = document.querySelector("#clockModel"); //reference to the ticking sound
       // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
       let spider = document.querySelector("#spiderModel"); //reference to the spider
-      if (method == "clockModel" && clickTime == 0) {
+      
+      
+      if (currElem == "clockModel" && CLICK_TIME == 0) {
         clock.stop();
         // stops ticking sound
         // function that makes the alarm sound automatically play
         setInterval(codingCourse, 3000);
         function codingCourse() {
-          if (clickTime == 0) {
+          if (CLICK_TIME == 0) {
             console.log("alarm playing");
             alarm.play();
           }
-          clickTime += 1;
+          CLICK_TIME += 1;
         }
       }
       // stop alarm sound after first click
-      if (method == "clockModel" && clickTime > 0) {
+      if (currElem == "clockModel" && CLICK_TIME > 0) {
         alarm.stop();
         spider.setAttribute(
           "animation",
@@ -113,7 +139,6 @@ AFRAME.registerComponent("change-position", {
             "; dur: 700;"
         );
       }
-      console.log(allElements());
     });
   },
 });

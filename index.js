@@ -6,7 +6,7 @@ AFRAME.registerComponent("set-color", {
   init: function () {
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
-        ROOM_COLOR= evt.target.getAttribute("color");
+        localStorage.setItem(ROOM_COLOR, evt.target.getAttribute("color"));
         console.log("setting color to:", ROOM_COLOR);
       }
     });
@@ -18,30 +18,29 @@ const setColor = () => {
   const lightSources = Array.from(document.querySelectorAll(".changeLight"));
   lightSources.map((elem) => {
     if (elem.hasAttribute("light")) {
-      elem.setAttribute("light", { color: ROOM_COLOR });
+      elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
     }
   });
 };
-
 
 AFRAME.registerComponent("change-scene", {
   init: function () {
     this.el.addEventListener("click", () => {
       const scences = Array.from(document.querySelectorAll(".scene"));
       console.log("entro");
-        scences.map(scene => {
-          if (this.el.getAttribute("class") == scene.getAttribute("id")) {
-            scene.setAttribute("visible", "true")
-            console.log("Changing room", scene.getAttribute("id"));
-          } else {
-            scene.setAttribute("visible", "false")
-          }
-        })
-        setColor();
+      scences.map((scene) => {
+        if (this.el.getAttribute("class") == scene.getAttribute("id")) {
+          scene.setAttribute("visible", "true");
+          console.log("Changing room", scene.getAttribute("id"));
+        } else {
+          scene.setAttribute("visible", "false");
+        }
+      });
+      setColor();
     });
 
     // Stops clock from automatically playing in desktop when starting in home
-    switch(this.el.getAttribute("class")) {
+    switch (this.el.getAttribute("class")) {
       case "homeScene":
         clock.stop();
         break;
@@ -49,10 +48,8 @@ AFRAME.registerComponent("change-scene", {
         clock.play();
         break;
       default:
-        clock.stop();;
-    };
-
-    
+        clock.stop();
+    }
   },
 });
 
@@ -69,7 +66,6 @@ const alarm = new Howl({
   pos: [1.98666, 0.91235, 2.08887],
   loop: true,
 });
-
 
 AFRAME.registerComponent("stop-animation", {
   init: function () {
@@ -92,8 +88,7 @@ AFRAME.registerComponent("soundcontroller", {
       let speaker = document.querySelector("#clockModel"); //reference to the ticking sound
       // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
       let spider = document.querySelector("#spiderModel"); //reference to the spider
-      
-      
+
       if (currElem == "clockModel" && CLICK_TIME == 0) {
         clock.stop();
         // stops ticking sound

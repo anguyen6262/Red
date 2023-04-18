@@ -6,8 +6,10 @@ AFRAME.registerComponent("set-color", {
   init: function () {
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
-        localStorage.setItem(ROOM_COLOR, evt.target.getAttribute("color"));
-        console.log("setting color to:", ROOM_COLOR);
+        localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
+        // console.log(this.el.getAttribute("color"));
+        // console.log("setting color to:", ROOM_COLOR);
+        setColor()
       }
     });
   },
@@ -28,6 +30,7 @@ AFRAME.registerComponent("change-scene", {
     this.el.addEventListener("click", () => {
       const scences = Array.from(document.querySelectorAll(".scene"));
       console.log("entro");
+      setColor();
       scences.map((scene) => {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
           scene.setAttribute("visible", "true");
@@ -35,8 +38,7 @@ AFRAME.registerComponent("change-scene", {
         } else {
           scene.setAttribute("visible", "false");
         }
-      });
-      setColor();
+      });   
     });
 
     // Stops clock from automatically playing in desktop when starting in home

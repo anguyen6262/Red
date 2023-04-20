@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Red - Danger</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script>
+      AFRAME.registerComponent('change-position', {
+        init: function () {
+          const user = document.querySelector('#user-camera')
+          this.el.addEventListener("onhover", (evt)=> {
+            user.setAttribute('material',{color:red, shader:flat})
+          })
+          this.el.addEventListener("click", (evt)=> {
+              let clickedObj = evt.srcElement.class; // get object that was clicked
+              let x = evt.detail.intersection.point.x; // get x position of the asset to move to
+              let [userX, userY, userZ] = user.getAttribute("position") // get user current position
+              let userPos = userX + " " + userY + " " + userZ //change position to string
+              let newPos = x.toString() + " " + userY + " " + userZ ; // new position to string
+
+              if (clickedObj == "change-position") {
+                user.setAttribute("animation", "property: position; from: " + userPos +"; to: " + newPos + "; dur: 700;")
+              }
+            })
+          }  
+        })
+
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+
+        <!-- Models. -->
+       
+
+        <!-- Images -->
+        
+
+        <!-- Audio. -->
+        
+
+      </a-assets>
+      
+      <!-- Camera and cursor -->
+      <a-entity id="user-camera" rotation="0 0 0" position="-10 0 0.6">
+        <a-camera  camera look-controls position="0 1.6 0" >
+          <a-entity cursor
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: white; shader: flat">
+          <!--  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+           animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1" -->
+          </a-entity>
+        </a-camera>
+      </a-entity>
+
+      <!-- Models. -->
+      
+      <!-- Asset to change position - further -->  
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-22 2.2 0.5" animation="property: position; to: -22 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" position="-22 0.021 0.5"  scale="0.8 0.1 0.8"  change-position > </a-entity>
+      
+      <!-- Asset to change position - middle -->  
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-10 2.2 0.5" animation="property: position; to: -10 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate " change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" position="-10 0.021 0.5"  scale=".8 0.1 0.8" change-position > </a-entity>
+      
+      <!-- Asset to change position - close  -->  
+      <a-entity class="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0.5" animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position></a-entity>
+      <a-entity class="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0.5" change-position > </a-entity>
+      <!-- <a-entity light="type: ambient"></a-entity> -->
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gothic Stone Doorway
+* source:	https://sketchfab.com/3d-models/gothic-stone-doorway-0484daddf41d49ed889e6fa24ce7c0d9
+* author:	HolmHansen (https://sketchfab.com/HolmH)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gothic Stone Doorway" (https://sketchfab.com/3d-models/gothic-stone-doorway-0484daddf41d49ed889e6fa24ce7c0d9) by HolmHansen (https://sketchfab.com/HolmH) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Start Room</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+
+    <script>
+        const clock = new Howl({
+        src:['assets/audio/1.mp3'],
+        autoplay: true, 
+        pos:[-1.98666, 0.91235, 2.08887],
+        loop:true
+      })
+    </script>
+
+</head>
+  <body>
+    <a-scene>
+
+        <a-assets>
+
+            <!-- Models. -->
+            
+            <a-asset-item id="gate" src="assets/doorway/scene.gltf"></a-asset-item>
+            <a-asset-item id="flame" src="assets/flame/scene.gltf"></a-asset-item>
+            <a-asset-item id="orb" src="assets/orb/scene.gltf"></a-asset-item>
+            <a-asset-item id="cube" src="assets/cubes/scene.gltf"></a-asset-item>
+
+            <!-- Audio. -->
+            <audio id="backgroundMusic" src="assets/audio/1.mp3"></audio>
+        
+        </a-assets>
+
+           <!-- Camera and cursor -->
+           <a-entity id="user-camera" rotation="0 0 0" position="0 0 3">
+            <a-camera  camera look-controls position="0 1.6 0" >
+                <a-entity cursor="fuse: true; fuseTimeout:2000"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: white; shader: flat"
+                animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2500; from: 1 1 1; to: 0.1 0.1 0.1"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+            </a-entity>
+        </a-camera>
+    </a-entity>
+
+    <!-- Default lighting injected by A-Frame. -->
+    <a-entity light="type: ambient; intensity: 1.5"></a-entity>
+    
+    <a-entity light="type: directional; color: #FFfF; intensity: 0.5 " position=" 1 1 1"></a-entity>
+
+    
+    <a-entity id="gateModel" gltf-model="#gate" position="-3.31161 0 -2.73161" scale="0.4 0.5 0.5"  rotation="0 45 0"></a-entity>
+    <a-entity id="gateModel" gltf-model="#gate" position="3.31161 0 -2.73161" scale="0.4 0.5 0.5"  rotation="0 135 0"></a-entity>
+    <a-sound src="#backgroundMusic" autoplay loop volume="0.5" position="0 2 -5"></a-sound>
+    
+    <a-box id="cubeModel" gltf-model="#cube" position="-3.31161 0 -2.73161" height="0" rotation="0 0 0"  scale="0.02 0.02 0.02"  animation="property: rotation; to: 0 360 0 ; loop: true; dur: 3000" rotation="0 0 0" ></a-box>
+    <a-box id="cubeModel" gltf-model="#cube" position="3.31161 0 -2.73161" height="0" rotation="0 0 0"   scale="0.02 0.02 0.02" animation="property: rotation; to: 0 360 0 ; loop: true; dur: 3000" rotation="0 0 0"></a-box>
+
+    <a-entity group>
+        <a-entity id="entity2" geometry="primitive: sphere" material="color: #1c1c2d; metalness: 0;"></a-entity>
+        <a-entity id="entity3" geometry="primitive: cylinder" material="color: #18291f; metalness: 0;"></a-entity>
+      </a-entity>
+      
+
+
+    <a-circle position="0 0 0" radius="8" rotation="-90 0 0" width="1" height="4" color=" #2d3344
+    "  ></a-circle> 
+    
+    <a-sky src="assets/startPage/sky.jpeg"></a-sky>
+    
+    </a-scene>
+  </body>
+</html>

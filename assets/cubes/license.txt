@@ -1,0 +1,11 @@
+Model Information:
+* title:	Opera One - Spiral Cubes
+* source:	https://sketchfab.com/3d-models/opera-one-spiral-cubes-b24db8ba9d7e4fbf85c90f866ee21bb0
+* author:	visualboy (https://sketchfab.com/visualboy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Opera One - Spiral Cubes" (https://sketchfab.com/3d-models/opera-one-spiral-cubes-b24db8ba9d7e4fbf85c90f866ee21bb0) by visualboy (https://sketchfab.com/visualboy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rocks and dirt patch 200k
+* source:	https://sketchfab.com/3d-models/rocks-and-dirt-patch-200k-7c7028be31b34679ba8ae953eb6beafd
+* author:	Cat O. (https://sketchfab.com/CatalinObreja)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rocks and dirt patch 200k" (https://sketchfab.com/3d-models/rocks-and-dirt-patch-200k-7c7028be31b34679ba8ae953eb6beafd) by Cat O. (https://sketchfab.com/CatalinObreja) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Beautiful sphere
+* source:	https://sketchfab.com/3d-models/beautiful-sphere-f7340c6b9dad4b88b84e097bcd53bcd8
+* author:	3DMish (https://sketchfab.com/3dmish)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Beautiful sphere" (https://sketchfab.com/3d-models/beautiful-sphere-f7340c6b9dad4b88b84e097bcd53bcd8) by 3DMish (https://sketchfab.com/3dmish) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

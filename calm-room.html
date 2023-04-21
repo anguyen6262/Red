@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Red - Danger</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script>
+      
+
+
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+
+        <!--Models-->ssss
+        <a-asset-item id="gardenGnome" src="assets/garden_dwarf_01_.rawscan/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="gazebo" src="assets/gazebo/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="gardenWall" src="assets/guild_park__gardens_-_wall_structure/scene.gltf"></a-asset-item>
+        <a-asset-item id="waterFountain" src="assets/fountain/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="dangerRoom" src="assets/room1/scene.gltf"></a-asset-item>
+      
+      </a-assets>
+      
+      <!-- Camera and cursor -->
+      <a-entity rotation="0 90 0">
+        <a-camera camera look-controls position="0 1.6 0" >
+          <a-entity cursor="fuse: true; fuseTimeout:2000"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: white; shader: flat"
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2500; from: 1 1 1; to: 0.1 0.1 0.1"
+            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
+
+          </a-entity>
+        </a-camera>
+      </a-entity>
+
+      <!-- Models. -->
+      <a-entity gltf-model="#gazebo" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
+      <!-- <a-entity gltf-model="#gardenGnome" position="5 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
+      <a-entity gltf-model="#waterFountain" position="10 0 0" animation-mixer></a-entity>
+      <!-- <a-entity gltf-model="#gardenWall" position="15 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
+
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+
+      <a-entity light="color: #BBB; type: ambient" data-aframe-default-light="" aframe-injected=""></a-entity>
+
+      <a-sky color="#ECECEC"></a-sky>
+      <!-- <a-sky src="assets/redImage.jpeg"></a-sky>  -->
+
+    </a-scene>
+    
+  </body>
+</html>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Little house in the forest
+* source:	https://sketchfab.com/3d-models/little-house-in-the-forest-71fdf63c6fa94ee5b19af9588d007de7
+* author:	gozdemrl (https://sketchfab.com/gozdemrl)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Little house in the forest" (https://sketchfab.com/3d-models/little-house-in-the-forest-71fdf63c6fa94ee5b19af9588d007de7) by gozdemrl (https://sketchfab.com/gozdemrl) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -7,8 +7,6 @@ AFRAME.registerComponent("set-color", {
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
         localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
-        // console.log(this.el.getAttribute("color"));
-        // console.log("setting color to:", ROOM_COLOR);
         setColor()
       }
     });
@@ -18,11 +16,16 @@ AFRAME.registerComponent("set-color", {
 //function that set the color of all components with class name `changeLight' to global variable
 const setColor = () => {
   const lightSources = Array.from(document.querySelectorAll(".changeLight"));
-  lightSources.map((elem) => {
-    if (elem.hasAttribute("light")) {
-      elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
-    }
-  });
+  const currScene = document.getElementById("homeScene");
+  console.log("is it at home scene?", currScene.getAttribute("visible"));
+
+  if (currScene.getAttribute("visible")){
+    lightSources.map((elem) => {
+      if (elem.hasAttribute("light")) {
+        elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
+      }
+    });
+  }
 };
 
 AFRAME.registerComponent("change-scene", {
@@ -30,28 +33,23 @@ AFRAME.registerComponent("change-scene", {
     this.el.addEventListener("click", () => {
       const scences = Array.from(document.querySelectorAll(".scene"));
       console.log("entro");
-      setColor();
+      // setColor();
       scences.map((scene) => {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
-          scene.setAttribute("visible", "true");
-          console.log("Changing room", scene.getAttribute("id"));
+          scene.setAttribute("visible", "true");  
+          scene.setAttribute("position", "0 0 0");
+          if (scene.getAttribute("id") == "dangerScene") {
+            clock.play();
+          }
+
         } else {
-          scene.setAttribute("visible", "false");
+           scene.setAttribute("visible", "false");
+           scene.setAttribute("position", "10 10 10");
+           clock.stop();
+           
         }
       });   
     });
-
-    // Stops clock from automatically playing in desktop when starting in home
-    switch (this.el.getAttribute("class")) {
-      case "homeScene":
-        clock.stop();
-        break;
-      case "dangerScene":
-        clock.play();
-        break;
-      default:
-        clock.stop();
-    }
   },
 });
 
@@ -136,6 +134,22 @@ AFRAME.registerComponent("change-position", {
             "; dur: 700;"
         );
       }
+    });
+  },
+});
+
+// Attribute that has that changes the cursor shape to be fill if an element is clickable
+AFRAME.registerComponent("clickable", {
+  init: function () {
+    const cursor = document.querySelector("#userCursor")
+    const el = this.el;
+
+    el.addEventListener("mouseenter", function (evt) {
+      cursor.setAttribute("geometry", {primitive: "ring", radiusInner: 0.002, radiusOuter: 0.03})
+    });
+
+    el.addEventListener("mouseleave", function (evt) {
+      cursor.setAttribute("geometry", {primitive: "ring", radiusInner: 0.02, radiusOuter: 0.03})
     });
   },
 });

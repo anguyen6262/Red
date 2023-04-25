@@ -70,6 +70,13 @@ const alarm = new Howl({
   loop: true,
 });
 
+const ambience = new Howl({
+  src:['assets/audio/1.mp3'],
+  autoplay: true,
+  pos:[-1.98666, 0.91235, 2.08887],
+  loop:true
+})
+
 AFRAME.registerComponent("stop-animation", {
   init: function () {
     this.el.addEventListener("animationcomplete", () => {

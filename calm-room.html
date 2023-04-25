@@ -18,15 +18,14 @@
       <a-assets>
 
         <!--Models-->
-        <!-- <a-asset-item id="gardenGnome" src="assets/garden_dwarf_01_.rawscan/scene.gltf"></a-asset-item>
-        <a-asset-item id="gazebo" src="assets/gazebo/scene.gltf"></a-asset-item>
-        <a-asset-item id="gardenWall" src="assets/guild_park__gardens_-_wall_structure/scene.gltf"></a-asset-item>
-        <a-asset-item id="waterFountain" src="assets/fountain/scene.gltf"></a-asset-item> -->
-
         <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
         <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
         <a-asset-item id="foxStatue" src="assets/kitsune_fox_shrine_statue/scene.gltf"></a-asset-item>
-      
+
+        <!--Audio-->
+        <audio id="backgroundMusic" src="assets/birds-19624.mp3" preload="auto"></audio>
+
+
       </a-assets>
       
       <!-- Camera and cursor -->
@@ -45,19 +44,16 @@
       </a-entity>
 
       <!-- Models. -->
-      <!-- <a-entity gltf-model="#gazebo" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
-      <a-entity gltf-model="#gardenGnome" position="5 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
-      <a-entity gltf-model="#waterFountain" position="10 0 0" animation-mixer></a-entity>
-      <a-entity gltf-model="#gardenWall" position="15 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
 
-      <a-entity gltf-model="#forest" position="0 0 0"></a-entity>
+      <a-entity gltf-model="#forest" position="0 0 0" sound="src: #backgroundMusic; autoplay: true"></a-entity>
       <a-entity gltf-model="#foxStatue" position="0 0 0"></a-entity>
       <a-entity gltf-model="#house" position="0 -5.152 0" scale=".01 .01 .01"></a-entity>
 
-      <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-      <!-- <a-entity light="color: #BBB; type: ambient" data-aframe-default-light="" aframe-injected=""></a-entity> -->
+      <a-entity sound="src: #backgroundMusic"></a-entity>
 
+      <a-plane position="0 0 -10" rotation="-90 0 0" width="100" height="100" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: true" visible="false"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
+      
       <!-- <a-sky src="assets/redImage.jpeg"></a-sky>  -->
 
     </a-scene>

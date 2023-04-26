@@ -6,8 +6,9 @@
     <meta name="description" content="Hello, World! - A-Frame">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js">
+    </script>
+    <script src="index.js">
       
 
 
@@ -18,47 +19,86 @@
       <a-assets>
 
         <!--Models-->
-        <!-- <a-asset-item id="gardenGnome" src="assets/garden_dwarf_01_.rawscan/scene.gltf"></a-asset-item>
-        <a-asset-item id="gazebo" src="assets/gazebo/scene.gltf"></a-asset-item>
-        <a-asset-item id="gardenWall" src="assets/guild_park__gardens_-_wall_structure/scene.gltf"></a-asset-item>
-        <a-asset-item id="waterFountain" src="assets/fountain/scene.gltf"></a-asset-item> -->
-
         <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
         <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
         <a-asset-item id="foxStatue" src="assets/kitsune_fox_shrine_statue/scene.gltf"></a-asset-item>
-      
+
+        <!--Audio-->
+        <audio id="backgroundMusic" src="assets/birds-19624.mp3" preload="auto"></audio>
+
+
       </a-assets>
       
       <!-- Camera and cursor -->
-      <a-entity rotation="0 90 0">
-        <a-camera camera look-controls position="0 1.6 0" >
-          <a-entity cursor="fuse: true; fuseTimeout:2000"
+      <a-entity id="user-camera" rotation="0 0 0"  position="21.49033 0.021 30.2487">
+        <a-camera  camera look-controls position="0 1.6 0" >
+          <a-entity id="userCursor"  cursor="fuse: true; fuseTimeout:2000"
             position="0 0 -1"
             geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
             material="color: white; shader: flat"
             animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
             animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 2500; from: 1 1 1; to: 0.1 0.1 0.1"
-            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1">
-
+            animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+            >
           </a-entity>
         </a-camera>
       </a-entity>
 
       <!-- Models. -->
-      <!-- <a-entity gltf-model="#gazebo" position="0 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
-      <a-entity gltf-model="#gardenGnome" position="5 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity>
-      <a-entity gltf-model="#waterFountain" position="10 0 0" animation-mixer></a-entity>
-      <a-entity gltf-model="#gardenWall" position="15 0 0" light="color: #ff0000; groundColor: #ff2424; intensity: 0.18; type: ambient"></a-entity> -->
 
-      <a-entity gltf-model="#forest" position="0 0 0"></a-entity>
-      <a-entity gltf-model="#foxStatue" position="0 0 0"></a-entity>
+      <a-entity gltf-model="#forest" position="0 0 0" sound="src: #backgroundMusic; autoplay: true"></a-entity>
+      <!-- <a-entity gltf-model="#foxStatue" position="0 0 0"></a-entity> -->
       <a-entity gltf-model="#house" position="0 -5.152 0" scale=".01 .01 .01"></a-entity>
 
-      <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-      <!-- <a-entity light="color: #BBB; type: ambient" data-aframe-default-light="" aframe-injected=""></a-entity> -->
+      <a-entity sound="src: #backgroundMusic"></a-entity>
 
+      <a-plane position="0 0 -10" rotation="-90 0 0" width="100" height="100" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: true" visible="false"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
-      <!-- <a-sky src="assets/redImage.jpeg"></a-sky>  -->
+
+      <!--Light-->
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+
+      <a-entity position="21.49033 -4.969 30.2487" change-position
+      clickable>
+      <a-entity
+        class="changeLight"
+        id="change-position"
+        light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot"
+        rotation="-90 0 0"
+        position="0 2.2 0.5"
+        animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+        change-position
+      ></a-entity> <a-entity
+      id="change-position"
+      geometry="primitive: cylinder"
+      position="0 0.021 0.5"
+      scale="0.8 0.1 0.8"
+      change-position
+      clickable
+    >
+    </a-entity> </a-entity>
+
+    <a-entity position="-2 -2.8 30.2487" change-position
+      clickable>
+      <a-entity
+        class="changeLight"
+        id="change-position"
+        light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot"
+        rotation="-90 0 0"
+        position="0 2.2 0.5"
+        animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+        change-position
+      ></a-entity> <a-entity
+      id="change-position"
+      geometry="primitive: cylinder"
+      position="0 0.021 0.5"
+      scale="0.8 0.1 0.8"
+      change-position
+      clickable
+    >
+    </a-entity> </a-entity>
+
 
     </a-scene>
     

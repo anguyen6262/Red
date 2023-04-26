@@ -32,6 +32,7 @@
 
         <!-- Images -->
         <img id="sign2" src="/assets/sign-dont-touch.jpg">
+        <img id="instructions" src="/assets/InstructionsDone.png" material=" opacity: 0.0;transparent: true"/>
 
         <!-- Audio. -->
         <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
@@ -40,7 +41,7 @@
       </a-assets>
       
       <!-- Camera and cursor -->
-      <a-entity id="user-camera" rotation="0 0 0"  position="-0.435 0.021 -1.8">
+      <a-entity id="user-camera" rotation="0 0 0"  position="-0.435 0.021 3">
         <a-camera  camera look-controls position="0 1.6 0" >
           <a-entity id="userCursor"  cursor="fuse: true; fuseTimeout:2000"
             position="0 0 -1"
@@ -56,6 +57,13 @@
 
       <!-- Home scence -->
       <a-entity class="scene" id="homeScene" position="0 0 0">
+        <!-- instructions -->
+        <a-image
+        src="#instructions"
+        position="-0.5 2.75 0.05965"
+        scale="6 6 1"
+        material="transparent:false; alphaTest: 0.5"
+      ></a-image>
         <!-- Default lighting injected by A-Frame. -->
         <a-entity  light="intensity: 1; type: ambient; angle: 60; color: #c1becb position=" 1 5 1></a-entity>
         <!-- <a-entity light="type: directional; color: #FFfF; intensity: 0.5 " position=" 1 1 1"></a-entity> -->

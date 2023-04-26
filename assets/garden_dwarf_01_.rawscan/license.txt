@@ -1,0 +1,11 @@
+Model Information:
+* title:	Garden Dwarf 01 .::RAWscan::.
+* source:	https://sketchfab.com/3d-models/garden-dwarf-01-rawscan-d33b3d12e2f3438ea31ad62bee9f0d92
+* author:	Andrea Spognetta (Spogna) (https://sketchfab.com/spogna)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Garden Dwarf 01 .::RAWscan::." (https://sketchfab.com/3d-models/garden-dwarf-01-rawscan-d33b3d12e2f3438ea31ad62bee9f0d92) by Andrea Spognetta (Spogna) (https://sketchfab.com/spogna) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

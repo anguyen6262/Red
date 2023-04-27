@@ -1,12 +1,30 @@
 let CLICK_TIME = 0; // variable to prevent the alarm from playing more than one time
 let ROOM_COLOR = "#ffffff"; //global variable
+const colors = {
+  "#e89f02": "Orange",
+  "#04ff00": "Green",
+  "#d000ff": "Purple",
+  "#006eff": "Blue",
+  "#ff0015": "Red",
+  "#eeff00": "Yellow" 
+
+}
+
+const scenePos = {
+  "homeScene": "-0.435 0 3",
+  "dangerScene": "-10 0 0.5",
+  "calmScene": "21.49033 0 30.2487"
+}
 
 // Changing global variable
 AFRAME.registerComponent("set-color", {
   init: function () {
+    const colortext = document.getElementById("colorText");
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
         localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
+        console.log(colortext);
+        colortext.setAttribute("text", { value: colors[localStorage.getItem(ROOM_COLOR)].toString() })
         setColor()
       }
     });
@@ -39,6 +57,7 @@ AFRAME.registerComponent("change-scene", {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
           scene.setAttribute("visible", "true");  
           scene.setAttribute("position", "0 0 0");
+          user.setAttribute("position",  scenePos[scene.getAttribute("id")].toString())
           if (scene.getAttribute("id") == "dangerScene") {
             clock.play();
           }
@@ -46,11 +65,8 @@ AFRAME.registerComponent("change-scene", {
         } else {
            scene.setAttribute("visible", "false");
            scene.setAttribute("position", "10 10 10");
-           clock.stop();           
-        }
-
-        user.setAttribute("position",  "0 0 0.6");
-
+           clock.stop();
+        };
       });   
     });
   },
@@ -137,7 +153,7 @@ AFRAME.registerComponent("change-position", {
             newPos +
             "; dur: 700;"
         );
-        console.log(user.getAttribute("position"));
+        // console.log(user.getAttribute("position"));
       }
     });
   },

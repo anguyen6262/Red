@@ -30,18 +30,24 @@
         <a-asset-item id="floor2" src="assets/floor2/scene.gltf"></a-asset-item>
         <a-asset-item id="globe" src="assets/sphere/scene.gltf"></a-asset-item>
 
+        <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
+        <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
+        <a-asset-item id="fox" src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"></a-asset-item>
+        <a-asset-item id="fire" src="assets/stage_campfire/scene.gltf"></a-asset-item>
+
         <!-- Images -->
-        <img id="sign2" src="/assets/sign-dont-touch.jpg">
+        <img id="sign2" src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sign-dont-touch.jpg?v=1682566287493">
         <img id="instructions" src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/Instructions.png?v=1682533144403" material=" opacity: 0.0;transparent: true"/>
 
         <!-- Audio. -->
-        <audio id="clock-ticking" src="/assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
+        <audio id="clock-ticking" src="assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
         <audio id="backgroundMusic" src="assets/audio/1.mp3"></audio>
+        <audio id="backgroundMusic" src="assets/birds-19624.mp3" preload="auto"></audio>
 
       </a-assets>
       
-      <!-- Camera and cursor -->
-      <a-entity id="user-camera" rotation="0 0 0"  position="-0.435 0.021 3">
+      <!-- Camera and cursor position="-0.435 0 3"-->
+      <a-entity id="user-camera" rotation="0 0 0"  position="-0.435 0 3">
         <a-camera  camera look-controls position="0 1.6 0" >
           <a-entity id="userCursor"  cursor="fuse: true; fuseTimeout:2000"
             position="0 0 -1"
@@ -56,7 +62,7 @@
       </a-entity>
 
       <!-- Home scence -->
-      <a-entity class="scene" id="homeScene" position="0 0 0">
+      <a-entity class="scene" id="homeScene" position="0 0 0" >
         <!-- instructions -->
         <a-image
         src="#instructions"
@@ -76,8 +82,8 @@
         <a-entity id="gateModel" gltf-model="assets/doorway/scene.gltf" position="2.40979 0 -2.654" scale="0.4 0.5 0.5" rotation="0 135 0"></a-entity>
         <a-entity id="gateModel" gltf-model="assets/doorway/scene.gltf" position="-3.27765 0 -2.65426" scale="0.4 0.5 0.5" rotation="0 45 0"></a-entity>
         
-        <a-box class="dangerScene" id="cubeModel" gltf-model="#cube" position="2.40979 0 -2.654" height="0" rotation="0 0 0"  scale="0.02 0.02 0.02"   animation="property: rotation; to: 0 360 0 ; loop: true; dur: 3000"  rotation="0 0 0" change-scene clickable></a-box>
-        <a-box id="cubeModel" gltf-model="#cube" position="-3.27765 0 -2.65426" height="0" rotation="0 0 0"   scale="0.02 0.02 0.02" animation="property: rotation; to: 0 360 0 ; loop: true; dur: 3000" rotation="0 0 0"></a-box>
+        <a-box class="dangerScene" id="cubeModel" gltf-model="#cube" position="2.40979 0 -2.654" height="0" rotation="0 0 0"  scale="0.02 0.02 0.02"   animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"  rotation="0 0 0" change-scene clickable></a-box>
+        <a-box class="calmScene" id="cubeModel" gltf-model="#cube" position="-3.27765 0 -2.65426" height="0" rotation="0 0 0"   scale="0.02 0.02 0.02" animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000" rotation="0 0 0"></a-box>
       
         <!-- trees -->
         <a-entity id="plant2Model" gltf-model="assets/space_plant/scene.gltf" position="-6.13919 0 -2.41964" height="0" rotation="" scale="0.007 0.007 0.007" visible=""></a-entity>
@@ -113,17 +119,33 @@
           <a-box class="colorBox" position="-2.944 0.5 0.615"  rotation="0 0 0" color="#ff0015" material="shader:flat;" set-color clickable></a-box>
           <a-box class="colorBox" position="-2.944 0.5 -0.77825" rotation="0 0 0" color="#eeff00" material="shader:flat;" set-color clickable></a-box>
         </a-entity>
+        <a-entity text="value: Please select a color!; align: center;" position="-0.4 1.3 -3.222" scale="3 3 1"></a-entity>
+        <a-entity text="value: Selected color:; align: center;" position="-0.4 1.1 -3.222" scale="3 3 1"></a-entity>
+        <a-entity id="colorText" text="value: NONE; align: center;" position="-0.4 0.9 -3.222" scale="3 3 1"></a-entity>
         
         <!-- black box that takes user to the danger room --->
         <a-box class="dangerScene" position="2.68777 2.24238 -2.5475"  rotation="0 0 0" color="#6b02f5" material="shader:flat;" change-scene clickable></a-box>
+        <a-box class="calmScene" position="-2.68777 2.24238 -2.5475"  rotation="0 0 0" color="#6b02f5" material="shader:flat;" change-scene clickable></a-box>
 
         <!-- Asset to change position -->  
-        <a-entity class="changeLight" id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="-0.435 2.2 -1.8" animation="property: position; to: -0.43.5 1.5 -1.8; dur: 2000; easing: linear; loop: true; dir: alternate" change-position clickable></a-entity>
-        <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="-0.435 0.021 -1.8" change-position clickable> </a-entity> 
+        <a-entity position="-0.435 0.021 -1.8">
+          <a-entity class="changeLight" id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0" animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate" change-position clickable></a-entity>
+          <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0" change-position clickable> </a-entity> 
+        </a-entity>
+
+        <a-entity position="-4.5 0.021 0.74761">
+          <a-entity class="changeLight" id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0" animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate" change-position clickable></a-entity>
+          <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0" change-position clickable> </a-entity> 
+        </a-entity>
+
+        <a-entity position="3.5 0.021 0.74761">
+          <a-entity class="changeLight" id="change-position" light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot" rotation="-90 0 0" position="0 2.2 0" animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate" change-position clickable></a-entity>
+          <a-entity id="change-position" geometry="primitive: cylinder" scale="0.8 0.1 0.8" position="0 0.021 0" change-position clickable> </a-entity> 
+        </a-entity>
       </a-entity>
 
       <!-- Danger Room Scene -->
-      <a-entity class="scene" id="dangerScene" visible="false" >
+      <a-entity class="scene" id="dangerScene" visible="false" position="10 10 10">
 
         <!-- Models. -->
         <a-entity class="changeLight" gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; intensity: 1.5; type: ambient"></a-entity>
@@ -161,6 +183,78 @@
         <a-box class="homeScene" position="2 0.5 0.5" rotation="0 45 0" color="#f7050d" material="shader:flat;" change-scene clickable></a-box> 
       </a-entity>
 
+      <!-- Calm Romm Scene -->
+      <a-entity class="scene" id="calmScene" visible="false" position="10 10 10">
+        <a-entity gltf-model="#forest" position="0 1.944 0" sound="src: #backgroundMusic; autoplay: true"></a-entity>
+        <a-entity gltf-model="#house" position="0 -5.152 0" scale=".01 .01 .01"></a-entity>
+        <a-entity gltf-model="#fox" position="11.30762 -2.127 16.84647" scale="0.03 0.03 0.03" animation-mixer></a-entity>
+        <a-entity gltf-model="#fire" position="1.25058 -0.73345 38.69189" scale="" animation-mixer=""></a-entity>
+
+        <a-entity sound="src: #backgroundMusic"></a-entity>
+
+        <a-plane position="0 0 -10" rotation="-90 0 0" width="100" height="100" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: true" visible="false"></a-plane>
+
+        <a-sky src="assets/sky4.jpg"></a-sky>
+
+        <!--Light-->
+        <a-entity class="changeLight" light="type: ambient; color: #BBB"></a-entity>
+        <a-entity class="changeLight" light="type: directional; color: #FFF; intensity:1" position="-0.5 1 1"></a-entity>
+
+
+        <!--Teleporters-->
+
+        <a-entity position="21.49033 -3.060 30.2487" change-position clickable>
+          <a-entity
+            light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot"
+            rotation="-90 0 0"
+            position="0 2.2 0.5"
+            animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+            change-position clickable>
+          </a-entity> 
+          <a-entity
+            id="change-position"
+            geometry="primitive: cylinder"
+            position="0 0.021 0.5"
+            scale="0.8 0.1 0.8"
+            change-position clickable>
+          </a-entity> 
+        </a-entity>
+
+        <a-entity position="-2 -0.878 30.2487" change-position clickable>
+          <a-entity
+            light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot"
+            rotation="-90 0 0"
+            position="0 2.2 0.5"
+            animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+            change-position clickable>
+          </a-entity> 
+          <a-entity
+            id="change-position"
+            geometry="primitive: cylinder"
+            position="0 0.021 0.5"
+            scale="0.8 0.1 0.8"
+            change-position clickable>
+          </a-entity> 
+        </a-entity>
+
+        <a-entity position="14.75694 -2.44694 21.37975" change-position clickable>
+          <a-entity
+            light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot"
+            rotation="-90 0 0"
+            position="0 2.2 0.5"
+            animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+            change-position clickable>
+          </a-entity> 
+          <a-entity
+            id="change-position"
+            geometry="primitive: cylinder"
+            position="0 0.021 0.5"
+            scale="0.8 0.1 0.8"
+            change-position clickable>
+          </a-entity> 
+        </a-entity>
+      
+      </a-entity>
       
     </a-scene>
   </body>

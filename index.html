@@ -42,7 +42,7 @@
         <!-- Audio. -->
         <audio id="clock-ticking" src="assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
         <audio id="ambience" src="assets/audio/1.mp3" preload="auto" loop="true"></audio>
-        <audio id="birdChirps" src="assets/birds-19624.mp3" preload="auto" loop="true"></audio>
+        <audio id="birdChirps" src="assets/birds-19624.mp3" preload="auto" loop="true" autoplay="false"></audio>
 
       </a-assets>
       
@@ -74,7 +74,7 @@
       <!-- sound -->
         <!-- <a-entity sound="src: #ambience"></a-entity> -->
 
-        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: assets/audio/1.mp3; autoplay: true,loop:true" visible="false"></a-entity>
+        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: #ambience; autoplay: true,loop:true" visible="false"></a-entity>
 
         <!-- Default lighting injected by A-Frame. -->
         <a-entity  light="intensity: 1; type: ambient; angle: 60; color: #c1becb position=" 1 5 1></a-entity>
@@ -157,7 +157,7 @@
         <a-entity class="changeLight" gltf-model="#dangerRoom" position="0 0 0" light="color: #ff0000; intensity: 1.5; type: ambient"></a-entity>
 
         <a-entity id="spiderModel" gltf-model="#spider" scale="0.05 0.05 0.05" rotation="0 90 0" position="-31.1526 0.52597 0.37798" animation-mixer stop-animation></a-entity>
-        <a-entity id="clockModel" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" soundcontroller clickable></a-entity>
+        <a-entity id="clockModel" gltf-model="assets/clock/scene.gltf" scale="0.01 0.01 0.01" rotation="0 180 0" position="-2.009 0.878 2.064" sound="src: #clock-ticking; autoplay:false; loop:true" soundcontroller clickable></a-entity>
         <!-- Light for just seeing the alarm clock -->
         <a-entity class="changeLight" light="type: spot; decay: 0.5; distance: 2; intensity: 15" rotation="-90 0 0" position="-2.009 2 2.064" ></a-entity>
 
@@ -199,7 +199,7 @@
 
         <!-- <a-entity sound="src: #birdChirps"></a-entity> -->
 
-        <a-entity id="calmMusic" position="0 0 -10" rotation="-90 0 0" width="100" height="5" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: false" visible="false"></a-entity>
+        <a-entity id="calmMusic" position="0 0 -10" rotation="-90 0 0" width="100" height="5" color="" shadow="" material="color: #FFF" geometry="" sound="src:#birdChirps; autoplay: false" visible="false"></a-entity>
 
         <a-sky src="assets/sky4.jpg"></a-sky>
 

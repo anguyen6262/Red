@@ -14,12 +14,12 @@ const scenePos = {
   dangerScene: "-10 0 0.5",
   calmScene: "21.49033 2 30.2487",
 };
-const clock = new Howl({
-  src: ["assets/audio/clock-ticking.mp3"],
-  autoplay: false,
-  pos: [-1.98666, 0.91235, 2.08887],
-  loop: true,
-});
+// const clock = new Howl({
+//   src: ["assets/audio/clock-ticking.mp3"],
+//   autoplay: false,
+//   pos: [-1.98666, 0.91235, 2.08887],
+//   loop: true,
+// });
 
 const alarm = new Howl({
   src: ["assets/audio/alarm-clock-sound.mp3"],
@@ -64,9 +64,12 @@ AFRAME.registerComponent("change-scene", {
     this.el.addEventListener("click", () => {
       const scences = Array.from(document.querySelectorAll(".scene"));
       const user = document.querySelector("#user-camera");
-      const calmMusic = document.querySelector("#calmMusic");
-      const homeMusic = document.querySelector("#homeMusic");
-      console.log(user);
+      const calmMusic = document.getElementById("calmMusic");
+      const clock = document.getElementById("clockModel");
+      // const homeMusic = document.getElementById("homeMusic");
+      console.log(homeMusic);
+      console.log(calmMusic);
+      // console.log(user);
       // setColor();
       scences.map((scene) => {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
@@ -77,21 +80,31 @@ AFRAME.registerComponent("change-scene", {
             scenePos[scene.getAttribute("id")].toString()
           );
           if (scene.getAttribute("id") == "dangerScene") {
-            clock.play();
-            homeMusic.components.sound.stopSound();
-            calmMusic.components.sound.stopSound();
+            clock.setAttribute("sound", "autoplay = true,src=#clockTicking");
+            console.log(clock, "whatever");
+            // homeMusic.setAttribute("sound", { autoplay: false });
+            console.log("entered danger room");
+            // calmMusic.setAttribute("sound", { autoplay: false });
           } else if (scene.getAttribute("id") == "calmScene") {
             scene.setAttribute("position", "0 2 0");
-            calmMusic.components.sound.playSound();
+            // calmMusic.setAttribute("sound", { autoplay: false });
+
+            // calmMusic.components.sound.playSound();
           }
         } else {
-          homeMusic.components.sound.playSound();
-          calmMusic.components.sound.stopSound();
+          // homeMusic.setAttribute("sound", { autoplay: true });
+
+          // homeMusic.components.sound.playSound();
+          // calmMusic.setAttribute("sound", { autoplay: false });
+
+          // calmMusic.components.sound.stopSound();
           scene.setAttribute("visible", "false");
           scene.setAttribute("position", "10 10 10");
-          clock.stop();
+          // clock.setAttribute("sound", { autoplay: false });
         }
       });
+      console.log(homeMusic);
+      console.log(calmMusic);
     });
   },
 });

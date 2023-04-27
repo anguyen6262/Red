@@ -121,7 +121,7 @@ AFRAME.registerComponent("soundcontroller", {
       let spider = document.querySelector("#spiderModel"); //reference to the spider
 
       if (currElem == "clockModel" && CLICK_TIME == 0) {
-        clock.stop();
+        speaker.components.sound.playSound();
         // stops ticking sound
         // function that makes the alarm sound automatically play
         setInterval(codingCourse, 3000);

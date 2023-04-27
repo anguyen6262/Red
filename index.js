@@ -67,8 +67,6 @@ AFRAME.registerComponent("change-scene", {
       const calmMusic = document.getElementById("calmMusic");
       const clock = document.getElementById("clockModel");
       const homeMusic = document.getElementById("homeMusic");
-      console.log(homeMusic);
-      console.log(calmMusic);
 
       scences.map((scene) => {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
@@ -81,15 +79,8 @@ AFRAME.registerComponent("change-scene", {
           if (scene.getAttribute("id") == "dangerScene") {
             clock.components.sound.playSound();
             homeMusic.components.sound.stopSound();
-
-            // clock.setAttribute("sound", "autoplay = true,src=#clockTicking");
-            console.log(clock, "whatever");
-            // homeMusic.setAttribute("sound", { autoplay: false });
-            console.log("entered danger room");
-            // calmMusic.setAttribute("sound", { autoplay: false });
           } else if (scene.getAttribute("id") == "calmScene") {
             scene.setAttribute("position", "0 2 0");
-            // calmMusic.setAttribute("sound", { autoplay: false });
 
             calmMusic.components.sound.playSound();
             homeMusic.components.sound.stopSound();
@@ -99,16 +90,10 @@ AFRAME.registerComponent("change-scene", {
             clock.components.sound.stopSound();
           }
         } else {
-          // homeMusic.setAttribute("sound", { autoplay: true });
-
-          // calmMusic.setAttribute("sound", { autoplay: false });
-
           scene.setAttribute("visible", "false");
           scene.setAttribute("position", "10 10 10");
         }
       });
-      console.log(homeMusic);
-      console.log(calmMusic);
     });
   },
 });

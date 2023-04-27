@@ -6,72 +6,14 @@ const colors = {
   "#d000ff": "Purple",
   "#006eff": "Blue",
   "#ff0015": "Red",
-  "#eeff00": "Yellow" 
-
-}
-
-const scenePos = {
-  "homeScene": "-0.435 0 3",
-  "dangerScene": "-10 0 0.5",
-  "calmScene": "21.49033 0 30.2487"
-}
-
-// Changing global variable
-AFRAME.registerComponent("set-color", {
-  init: function () {
-    const colortext = document.getElementById("colorText");
-    this.el.addEventListener("click", (evt) => {
-      if (this.el.getAttribute("class") == "colorBox") {
-        localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
-        console.log(colortext);
-        colortext.setAttribute("text", { value: colors[localStorage.getItem(ROOM_COLOR)].toString() })
-        setColor()
-      }
-    });
-  },
-});
-
-//function that set the color of all components with class name `changeLight' to global variable
-const setColor = () => {
-  const lightSources = Array.from(document.querySelectorAll(".changeLight"));
-  const currScene = document.getElementById("homeScene");
-  console.log("is it at home scene?", currScene.getAttribute("visible"));
-
-  if (currScene.getAttribute("visible")){
-    lightSources.map((elem) => {
-      if (elem.hasAttribute("light")) {
-        elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
-      }
-    });
-  }
+  "#eeff00": "Yellow",
 };
 
-AFRAME.registerComponent("change-scene", {
-  init: function () {
-    this.el.addEventListener("click", () => {
-      const scences = Array.from(document.querySelectorAll(".scene"));
-      const user = document.querySelector("#user-camera")
-      console.log(user);
-      // setColor();
-      scences.map((scene) => {
-        if (this.el.getAttribute("class") == scene.getAttribute("id")) {
-          scene.setAttribute("visible", "true");  
-          scene.setAttribute("position", "0 0 0");
-          user.setAttribute("position",  scenePos[scene.getAttribute("id")].toString())
-          if (scene.getAttribute("id") == "dangerScene") {
-            clock.play();
-          }
-
-        } else {
-           scene.setAttribute("visible", "false");
-           scene.setAttribute("position", "10 10 10");
-           clock.stop();
-        };
-      });   
-    });
-  },
-});
-
+const scenePos = {
+  homeScene: "-0.435 0 3",
+  dangerScene: "-10 0 0.5",
+  calmScene: "21.49033 2 30.2487",
+};
 const clock = new Howl({
   src: ["assets/audio/clock-ticking.mp3"],
   autoplay: false,
@@ -84,6 +26,74 @@ const alarm = new Howl({
   autoplay: false,
   pos: [1.98666, 0.91235, 2.08887],
   loop: true,
+});
+// Changing global variable
+AFRAME.registerComponent("set-color", {
+  init: function () {
+    const colortext = document.getElementById("colorText");
+    this.el.addEventListener("click", (evt) => {
+      if (this.el.getAttribute("class") == "colorBox") {
+        localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
+        console.log(colortext);
+        colortext.setAttribute("text", {
+          value: colors[localStorage.getItem(ROOM_COLOR)].toString(),
+        });
+        setColor();
+      }
+    });
+  },
+});
+
+//function that set the color of all components with class name `changeLight' to global variable
+const setColor = () => {
+  const lightSources = Array.from(document.querySelectorAll(".changeLight"));
+  const currScene = document.getElementById("homeScene");
+  console.log("is it at home scene?", currScene.getAttribute("visible"));
+
+  if (currScene.getAttribute("visible")) {
+    lightSources.map((elem) => {
+      if (elem.hasAttribute("light")) {
+        elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
+      }
+    });
+  }
+};
+
+AFRAME.registerComponent("change-scene", {
+  init: function () {
+    this.el.addEventListener("click", () => {
+      const scences = Array.from(document.querySelectorAll(".scene"));
+      const user = document.querySelector("#user-camera");
+      const calmMusic = document.querySelector("#calmMusic");
+      const homeMusic = document.querySelector("#homeMusic");
+      console.log(user);
+      // setColor();
+      scences.map((scene) => {
+        if (this.el.getAttribute("class") == scene.getAttribute("id")) {
+          scene.setAttribute("visible", "true");
+          scene.setAttribute("position", "0 0 0");
+          user.setAttribute(
+            "position",
+            scenePos[scene.getAttribute("id")].toString()
+          );
+          if (scene.getAttribute("id") == "dangerScene") {
+            clock.play();
+            homeMusic.components.sound.stopSound();
+            calmMusic.components.sound.stopSound();
+          } else if (scene.getAttribute("id") == "calmScene") {
+            scene.setAttribute("position", "0 2 0");
+            calmMusic.components.sound.playSound();
+          }
+        } else {
+          homeMusic.components.sound.playSound();
+          calmMusic.components.sound.stopSound();
+          scene.setAttribute("visible", "false");
+          scene.setAttribute("position", "10 10 10");
+          clock.stop();
+        }
+      });
+    });
+  },
 });
 
 AFRAME.registerComponent("stop-animation", {
@@ -162,15 +172,23 @@ AFRAME.registerComponent("change-position", {
 // Attribute that has that changes the cursor shape to be fill if an element is clickable
 AFRAME.registerComponent("clickable", {
   init: function () {
-    const cursor = document.querySelector("#userCursor")
+    const cursor = document.querySelector("#userCursor");
     const el = this.el;
 
     el.addEventListener("mouseenter", function (evt) {
-      cursor.setAttribute("geometry", {primitive: "ring", radiusInner: 0.002, radiusOuter: 0.03})
+      cursor.setAttribute("geometry", {
+        primitive: "ring",
+        radiusInner: 0.002,
+        radiusOuter: 0.03,
+      });
     });
 
     el.addEventListener("mouseleave", function (evt) {
-      cursor.setAttribute("geometry", {primitive: "ring", radiusInner: 0.02, radiusOuter: 0.03})
+      cursor.setAttribute("geometry", {
+        primitive: "ring",
+        radiusInner: 0.02,
+        radiusOuter: 0.03,
+      });
     });
   },
 });

@@ -41,8 +41,8 @@
 
         <!-- Audio. -->
         <audio id="clock-ticking" src="assets/audio/clock-ticking.mp3" preload="auto" loop="true"></audio>
-        <audio id="backgroundMusic" src="assets/audio/1.mp3"></audio>
-        <audio id="backgroundMusic" src="assets/birds-19624.mp3" preload="auto"></audio>
+        <audio id="ambience" src="assets/audio/1.mp3" preload="auto" loop="true"></audio>
+        <audio id="birdChirps" src="assets/birds-19624.mp3" preload="auto" loop="true"></audio>
 
       </a-assets>
       
@@ -70,11 +70,17 @@
         scale="6 6 1"
         material="transparent:false; alphaTest: 0.5"
       ></a-image>
+
+      <!-- sound -->
+        <!-- <a-entity sound="src: #ambience"></a-entity> -->
+
+        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: assets/audio/1.mp3; autoplay: true,loop:true" visible="false"></a-entity>
+
         <!-- Default lighting injected by A-Frame. -->
         <a-entity  light="intensity: 1; type: ambient; angle: 60; color: #c1becb position=" 1 5 1></a-entity>
         <!-- <a-entity light="type: directional; color: #FFfF; intensity: 0.5 " position=" 1 1 1"></a-entity> -->
       
-        <a-sound src="#backgroundMusic" autoplay loop volume="0.5" position="0 2 -5"></a-sound>
+        <!-- <a-sound src="#ambience" autoplay loop volume="0.5" position="0 2 -5"></a-sound> -->
         
         <a-entity id="globeModel" gltf-model="assets/sphere/scene.gltf" position="-0.38713 0 0.05965" rotation="" scale="0.01 0.01 0.01"></a-entity>
 
@@ -185,14 +191,15 @@
 
       <!-- Calm Romm Scene -->
       <a-entity class="scene" id="calmScene" visible="false" position="10 10 10">
-        <a-entity gltf-model="#forest" position="0 1.944 0" sound="src: #backgroundMusic; autoplay: true"></a-entity>
+        <a-entity gltf-model="#forest" position="0 1.944 0" ></a-entity>
+        <!-- sound="src: #birdChirps; autoplay: true" -->
         <a-entity gltf-model="#house" position="0 -5.152 0" scale=".01 .01 .01"></a-entity>
         <a-entity gltf-model="#fox" position="11.30762 -2.127 16.84647" scale="0.03 0.03 0.03" animation-mixer></a-entity>
         <a-entity gltf-model="#fire" position="1.25058 -0.73345 38.69189" scale="" animation-mixer=""></a-entity>
 
-        <a-entity sound="src: #backgroundMusic"></a-entity>
+        <!-- <a-entity sound="src: #birdChirps"></a-entity> -->
 
-        <a-plane position="0 0 -10" rotation="-90 0 0" width="100" height="100" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: true" visible="false"></a-plane>
+        <a-entity id="calmMusic" position="0 0 -10" rotation="-90 0 0" width="100" height="5" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: false" visible="false"></a-entity>
 
         <a-sky src="assets/sky4.jpg"></a-sky>
 

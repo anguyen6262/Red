@@ -10,6 +10,22 @@
     </script>
     <script src="index.js">
       
+      AFRAME.registerComponent('change-position', {
+        init: function () {
+          const user = document.querySelector('#user-camera')
+          this.el.addEventListener("click", (evt)=> {
+              let clickedObj = evt.srcElement.id; // get object that was clicked
+              let x = evt.detail.intersection.point.x; // get x position of the asset to move to
+              let [userX, userY, userZ] = user.getAttribute("position") // get user current position
+              let userPos = userX + " " + userY + " " + userZ //change position to string
+              let newPos = x.toString() + " " + userY + " " + userZ ; // new position to string
+
+              if (clickedObj == "change-position") {
+                user.setAttribute("animation", "property: position; from: " + userPos +"; to: " + newPos + "; dur: 700;")
+              }
+            })
+          }  
+        })
 
 
     </script>
@@ -21,11 +37,12 @@
         <!--Models-->
         <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
         <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
-        <a-asset-item id="foxStatue" src="assets/kitsune_fox_shrine_statue/scene.gltf"></a-asset-item>
+        <a-asset-item id="fox" src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"></a-asset-item>
+        <a-asset-item id="fire" src="assets/stage_campfire/scene.gltf"></a-asset-item>
+
 
         <!--Audio-->
         <audio id="backgroundMusic" src="assets/birds-19624.mp3" preload="auto"></audio>
-
 
       </a-assets>
       
@@ -47,17 +64,22 @@
       <!-- Models. -->
 
       <a-entity gltf-model="#forest" position="0 1.944 0" sound="src: #backgroundMusic; autoplay: true"></a-entity>
-      <!-- <a-entity gltf-model="#foxStatue" position="0 0 0"></a-entity> -->
       <a-entity gltf-model="#house" position="0 -5.152 0" scale=".01 .01 .01"></a-entity>
+      <a-entity gltf-model="#fox" position="11.30762 -2.127 16.84647" scale="0.03 0.03 0.03" animation-mixer></a-entity>
+      <a-entity gltf-model="#fire" position="1.25058 -0.73345 38.69189" scale="" animation-mixer=""></a-entity>
 
       <a-entity sound="src: #backgroundMusic"></a-entity>
 
       <a-plane position="0 0 -10" rotation="-90 0 0" width="100" height="100" color="" shadow="" material="color: #FFF" geometry="" sound="src: assets/birds-19624.mp3; autoplay: true" visible="false"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+      <a-sky src="assets/sky4.jpg"></a-sky>
 
       <!--Light-->
       <a-entity light="type: ambient; color: #BBB"></a-entity>
       <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+
+
+      <!--Teleporters-->
 
       <a-entity position="21.49033 -3.060 30.2487" change-position
       clickable>
@@ -97,6 +119,10 @@
       change-position
       clickable
     >
+    </a-entity> </a-entity>
+
+    <a-entity position="14.75694 -2.44694 21.37975" change-position="" clickable="">
+      <a-entity class="changeLight" id="change-position" light="angle: 20; color: #00E1FF; groundColor: #00E1FF; type: spot" rotation="-90 0 0" position="0 1.9783450000010432 0.5" animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate" change-position=""></a-entity> <a-entity id="change-position" geometry="primitive: cylinder" position="0 0.021 0.5" scale="0.8 0.1 0.8" change-position="" clickable="">
     </a-entity> </a-entity>
 
 

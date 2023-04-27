@@ -124,7 +124,7 @@
         <!-- sound -->
         <!-- <a-entity sound="src: #ambience"></a-entity> -->
 
-        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: #ambience; autoplay: true,loop:true" visible="false"></a-entity>
+        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: #ambience; autoplay: true; loop:true" visible="false"></a-entity>
 
         <!-- Default lighting injected by A-Frame. -->
         <a-entity
@@ -675,7 +675,7 @@
           shadow=""
           material="color: #FFF"
           geometry=""
-          sound="src:#birdChirps; autoplay: false"
+          sound="src:#birdChirps; autoplay: false;"
           visible="false"
         ></a-entity>
 
@@ -759,6 +759,15 @@
             clickable
           >
           </a-entity>
+          <a-box
+          class="homeScene"
+          position="2 0.5 0.5"
+          rotation="0 45 0"
+          color="#f7050d"
+          material="shader:flat;"
+          change-scene
+          clickable
+        ></a-box>
         </a-entity>
       </a-entity>
     </a-scene>

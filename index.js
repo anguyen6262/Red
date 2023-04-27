@@ -116,12 +116,12 @@ AFRAME.registerComponent("soundcontroller", {
     let controlButton = this.el;
     controlButton.addEventListener("click", function (ev) {
       let currElem = ev.srcElement.id; //current element selected
-      let speaker = document.querySelector("#clockModel"); //reference to the ticking sound
+      let speaker = document.getElementById("clockModel"); //reference to the ticking sound
       // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
       let spider = document.querySelector("#spiderModel"); //reference to the spider
 
       if (currElem == "clockModel" && CLICK_TIME == 0) {
-        speaker.components.sound.playSound();
+        speaker.components.sound.stopSound();
         // stops ticking sound
         // function that makes the alarm sound automatically play
         setInterval(codingCourse, 3000);
@@ -129,6 +129,7 @@ AFRAME.registerComponent("soundcontroller", {
           if (CLICK_TIME == 0) {
             console.log("alarm playing");
             alarm.play();
+            speaker.components.sound.stopSound();
           }
           CLICK_TIME += 1;
         }

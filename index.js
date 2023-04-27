@@ -66,11 +66,10 @@ AFRAME.registerComponent("change-scene", {
       const user = document.querySelector("#user-camera");
       const calmMusic = document.getElementById("calmMusic");
       const clock = document.getElementById("clockModel");
-      // const homeMusic = document.getElementById("homeMusic");
+      const homeMusic = document.getElementById("homeMusic");
       console.log(homeMusic);
       console.log(calmMusic);
-      // console.log(user);
-      // setColor();
+
       scences.map((scene) => {
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
           scene.setAttribute("visible", "true");
@@ -80,7 +79,10 @@ AFRAME.registerComponent("change-scene", {
             scenePos[scene.getAttribute("id")].toString()
           );
           if (scene.getAttribute("id") == "dangerScene") {
-            clock.setAttribute("sound", "autoplay = true,src=#clockTicking");
+            clock.components.sound.playSound();
+            homeMusic.components.sound.stopSound();
+
+            // clock.setAttribute("sound", "autoplay = true,src=#clockTicking");
             console.log(clock, "whatever");
             // homeMusic.setAttribute("sound", { autoplay: false });
             console.log("entered danger room");
@@ -89,18 +91,20 @@ AFRAME.registerComponent("change-scene", {
             scene.setAttribute("position", "0 2 0");
             // calmMusic.setAttribute("sound", { autoplay: false });
 
-            // calmMusic.components.sound.playSound();
+            calmMusic.components.sound.playSound();
+            homeMusic.components.sound.stopSound();
+          } else {
+            homeMusic.components.sound.playSound();
+            calmMusic.components.sound.stopSound();
+            clock.components.sound.stopSound();
           }
         } else {
           // homeMusic.setAttribute("sound", { autoplay: true });
 
-          // homeMusic.components.sound.playSound();
           // calmMusic.setAttribute("sound", { autoplay: false });
 
-          // calmMusic.components.sound.stopSound();
           scene.setAttribute("visible", "false");
           scene.setAttribute("position", "10 10 10");
-          // clock.setAttribute("sound", { autoplay: false });
         }
       });
       console.log(homeMusic);

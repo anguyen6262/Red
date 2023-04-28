@@ -55,13 +55,23 @@ const setColor = () => {
 
 AFRAME.registerComponent("change-instructions", {
   init: function () {
-    this.el.addEventListener("click",() => {
-      const instructions = Array.from(document.querySelectorAll(".instructions"));
-      const user = document.querySelector("#user-camera");
-      if(instructions[0]){
-        el.setAttribute(instructions)
+    const instructions = Array.from(document.querySelectorAll(".instructions"));
+    let currentIndex = 0;
+    let currentInstruction = instructions[currentIndex];
+    console.log("first", currentInstruction);
+    this.el.addEventListener("click", () => {
+      console.log("second", currentInstruction);
+      currentInstruction.setAttribute("visible", "false");
+      if (this.el.getAttribute("id") == "nextButton") {
+        currentIndex++;
+        // console.log("next");
+      } else if (this.el.getAttribute("id") == "prevButton") {
+        currentIndex--;
+        // console.log("prev");
       }
-      
+      currentInstruction = instructions[currentIndex];
+      currentInstruction.setAttribute("visible", "true");
+      console.log(currentIndex);
     });
   },
 });

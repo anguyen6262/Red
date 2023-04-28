@@ -14,12 +14,6 @@ const scenePos = {
   dangerScene: "-10 0 0.5",
   calmScene: "21.49033 2 30.2487",
 };
-// const clock = new Howl({
-//   src: ["assets/audio/clock-ticking.mp3"],
-//   autoplay: false,
-//   pos: [-1.98666, 0.91235, 2.08887],
-//   loop: true,
-// });
 
 const alarm = new Howl({
   src: ["assets/audio/alarm-clock-sound.mp3"],
@@ -58,6 +52,19 @@ const setColor = () => {
     });
   }
 };
+
+AFRAME.registerComponent("change-instructions", {
+  init: function () {
+    this.el.addEventListener("click",() => {
+      const instructions = Array.from(document.querySelectorAll(".instructions"));
+      const user = document.querySelector("#user-camera");
+      if(instructions[0]){
+        el.setAttribute(instructions)
+      }
+      
+    });
+  },
+});
 
 AFRAME.registerComponent("change-scene", {
   init: function () {

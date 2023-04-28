@@ -67,8 +67,18 @@
           src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sign-dont-touch.jpg?v=1682566287493"
         />
         <img
-          id="instructions"
-          src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/Instructions.png?v=1682533144403"
+          id="instructions1"
+          src="https://cdn.glitch.global/e4a5a081-1fb0-4701-9c59-6e2b1cdeb693/Instructions1.png?v=1682708765163"
+          material=" opacity: 0.0;transparent: true"
+        />
+        <img
+          id="instructions2"
+          src="https://cdn.glitch.global/e4a5a081-1fb0-4701-9c59-6e2b1cdeb693/Instructions2.png?v=1682708771788"
+          material=" opacity: 0.0;transparent: true"
+        />
+        <img
+          id="instructions3"
+          src="https://cdn.glitch.global/e4a5a081-1fb0-4701-9c59-6e2b1cdeb693/Instructions3.png?v=1682708775951"
           material=" opacity: 0.0;transparent: true"
         />
 
@@ -116,10 +126,26 @@
         <!-- instructions -->
         <a-image
           src="#instructions1"
-          position="-0.5 2.75 0.05965"
+          position="-0.45 2.7 0.05965"
           scale="6 6 1"
           material="transparent:false; alphaTest: 0.5"
         ></a-image>
+        <a-image
+          src="#instructions2"
+          position="-0.45 2.7 0.05965"
+          scale="6 6 1"
+          material="transparent:false; alphaTest: 0.5"
+        ></a-image>
+        <a-image
+          src="#instructions3"
+          position="-0.45 2.7 0.05965"
+          scale="6 6 1"
+          material="transparent:false; alphaTest: 0.5"
+        ></a-image>
+
+        <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.3 0 0.3" position="-0.9 1 0.05965" rotation="90 0 0"></a-entity>
+        <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.3 0 0.3" position="0 1 0.05965" rotation="90 0 0"></a-entity>
+
 
         <!-- sound -->
         <!-- <a-entity sound="src: #ambience"></a-entity> -->
@@ -140,7 +166,7 @@
         <a-entity
           id="globeModel"
           gltf-model="assets/sphere/scene.gltf"
-          position="-0.38713 0 0.05965"
+          position="-0.38713 -0.5 0.05965"
           rotation=""
           scale="0.01 0.01 0.01"
         ></a-entity>

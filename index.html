@@ -415,7 +415,7 @@
         ></a-entity>
 
         <!-- black box that takes user to the danger room --->
-        <a-box
+        <!-- <a-box
           class="dangerScene"
           position="2.68777 2.24238 -2.5475"
           rotation="0 0 0"
@@ -423,8 +423,27 @@
           material="shader:flat;"
           change-scene
           clickable
-        ></a-box>
-        <a-box
+        ></a-box> -->
+        <a-entity class="dangerScene"
+        position="2.2 1 -2.45"
+        rotation="0 315 0"
+        color="#FFFFFF"
+        geometry="primitive:plane; height: 2; width: 1.3"
+        visible="false"
+        change-scene
+        clickable></a-entity>
+
+
+        <a-entity class="calmScene"
+        position="-3.1 1 -2.5"
+        rotation="0 40 0"
+        color="#FFFFFF"
+        geometry="primitive:plane; height: 2; width: 1.1"
+        visible="false"
+        change-scene
+        clickable></a-entity>
+
+        <!-- <a-box
           class="calmScene"
           position="-2.68777 2.24238 -2.5475"
           rotation="0 0 0"
@@ -432,7 +451,7 @@
           material="shader:flat;"
           change-scene
           clickable
-        ></a-box>
+        ></a-box> -->
 
         <!-- Asset to change position -->
         

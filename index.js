@@ -1,4 +1,5 @@
 let CLICK_TIME = 0; // variable to prevent the alarm from playing more than one time
+let INSTRUCTIONS_INDEX = 0;
 let ROOM_COLOR = "#ffffff"; //global variable
 const colors = {
   "#e89f02": "Orange",
@@ -56,23 +57,29 @@ const setColor = () => {
 AFRAME.registerComponent("change-instructions", {
   init: function () {
     const instructions = Array.from(document.querySelectorAll(".instructions"));
-    let currentIndex = 0;
-    let currentInstruction = instructions[currentIndex];
-    console.log("first", currentInstruction);
     this.el.addEventListener("click", () => {
-      console.log("second", currentInstruction);
+      let currentInstruction = instructions[INSTRUCTIONS_INDEX];
+      // console.log("second", currentInstruction);
       currentInstruction.setAttribute("visible", "false");
       if (this.el.getAttribute("id") == "nextButton") {
-        currentIndex++;
+        INSTRUCTIONS_INDEX++;
         // console.log("next");
       } else if (this.el.getAttribute("id") == "prevButton") {
-        currentIndex--;
-        // console.log("prev");
+        INSTRUCTIONS_INDEX--;
       }
-      currentInstruction = instructions[currentIndex];
+      currentInstruction = instructions[INSTRUCTIONS_INDEX];
       currentInstruction.setAttribute("visible", "true");
-      console.log(currentIndex);
     });
+  },
+  update: function () {
+    if (INSTRUCTIONS_INDEX == 0 && this.el.getAttribute("id") == "prevButton") {
+      // console.log("before");
+      document
+        .getElementById("prevButton")
+        .removeAttribute("change-instructions");
+      // this.el.removeAttribute("change-instructions");
+      // this.el.removeAttribute("clickable");
+    }
   },
 });
 

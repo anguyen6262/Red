@@ -56,6 +56,7 @@ const setColor = () => {
 
 AFRAME.registerComponent("change-instructions", {
   init: function () {
+    //The user does not have access to the prevButton on the first page
     if (this.el.getAttribute("id") == "prevButton") {
       this.el.setAttribute("scale", "0 0 0");
     }
@@ -63,8 +64,9 @@ AFRAME.registerComponent("change-instructions", {
     const buttons = Array.from(document.querySelectorAll(".button"));
     this.el.addEventListener("click", () => {
       document.getElementById("globeModel").components.sound.playSound();
-      //changes instruction screen after clicking on a button
+      //delays changing the page which makes it more in sync with the audio.
       setTimeout(() => {
+        //changes instruction screen after clicking on a button
         let currentInstruction = instructions[INSTRUCTIONS_INDEX];
         currentInstruction.setAttribute("visible", "false");
         if (this.el.getAttribute("id") == "nextButton") {
@@ -75,6 +77,7 @@ AFRAME.registerComponent("change-instructions", {
         currentInstruction = instructions[INSTRUCTIONS_INDEX];
         currentInstruction.setAttribute("visible", "true");
 
+        //chooses which buttons are clickable
         buttons.forEach((button) => {
           button.setAttribute("scale", "0.2 0 0.2");
           if (
@@ -86,30 +89,7 @@ AFRAME.registerComponent("change-instructions", {
             button.setAttribute("scale", "0 0 0");
           }
         });
-      }, 400);
-
-      // let currentInstruction = instructions[INSTRUCTIONS_INDEX];
-      // currentInstruction.setAttribute("visible", "false");
-      // if (this.el.getAttribute("id") == "nextButton") {
-      //   INSTRUCTIONS_INDEX++;
-      // } else if (this.el.getAttribute("id") == "prevButton") {
-      //   INSTRUCTIONS_INDEX--;
-      // }
-      // currentInstruction = instructions[INSTRUCTIONS_INDEX];
-      // currentInstruction.setAttribute("visible", "true");
-
-      // buttons.forEach((button) => {
-      //   button.setAttribute("scale", "0.2 0 0.2");
-      //   if (
-      //     (INSTRUCTIONS_INDEX == 0 &&
-      //       button.getAttribute("id") == "prevButton") ||
-      //     (INSTRUCTIONS_INDEX == 2 && button.getAttribute("id") == "nextButton")
-      //   ) {
-      //     button.setAttribute("scale", "0 0 0");
-      //   }
-      // });
-
-      //chooses which buttons are clickable
+      }, 200);
     });
   },
 });

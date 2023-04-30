@@ -50,6 +50,7 @@ const setColor = () => {
       if (elem.hasAttribute("light")) {
         elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
       }
+      
     });
   }
 };

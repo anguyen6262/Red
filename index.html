@@ -435,11 +435,12 @@
         ></a-box>
 
         <!-- Asset to change position -->
-        <a-entity position="-0.435 0.021 -1.8">
+        
+        <a-entity position="-0.6 0 3">
           <a-entity
             class="changeLight"
             id="change-position"
-            light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot"
+            light="angle: 20; color: #6a6a6a; groundColor: #00e1ff; type: spot"
             rotation="-90 0 0"
             position="0 2.2 0"
             animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate"
@@ -449,6 +450,7 @@
           <a-entity
             id="change-position"
             geometry="primitive: cylinder"
+            material="color:#999999"
             scale="0.8 0.1 0.8"
             position="0 0.021 0"
             change-position
@@ -457,11 +459,36 @@
           </a-entity>
         </a-entity>
 
+        <a-entity position="-0.435 0.021 -1.8">
+          <a-entity
+            class="changeLight"
+            id="change-position"
+            light="angle: 20; color: #6a6a6a; groundColor: #00e1ff; type: spot"
+            rotation="-90 0 0"
+            position="0 2.2 0"
+            animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate"
+            change-position
+            clickable
+          ></a-entity>
+          <a-entity
+            id="change-position"
+      
+            geometry="primitive: cylinder"
+            material="color:#999999"
+            scale="0.8 0.1 0.8"
+            position="0 0.021 0"
+            change-position
+            clickable
+          >
+          </a-entity>
+        </a-entity>
+
+        
         <a-entity position="-4.5 0.021 0.74761">
           <a-entity
             class="changeLight"
             id="change-position"
-            light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot"
+            light="angle: 20; color: #6a6a6a; groundColor: #00e1ff; type: spot"
             rotation="-90 0 0"
             position="0 2.2 0"
             animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate"
@@ -471,6 +498,7 @@
           <a-entity
             id="change-position"
             geometry="primitive: cylinder"
+            material="color:#999999"
             scale="0.8 0.1 0.8"
             position="0 0.021 0"
             change-position
@@ -483,7 +511,7 @@
           <a-entity
             class="changeLight"
             id="change-position"
-            light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot"
+            light="angle: 20; color: #6a6a6a; groundColor: #00e1ff; type: spot"
             rotation="-90 0 0"
             position="0 2.2 0"
             animation="property: position; to: 0 1.5 0; dur: 2000; easing: linear; loop: true; dir: alternate"
@@ -493,6 +521,7 @@
           <a-entity
             id="change-position"
             geometry="primitive: cylinder"
+            material="color:#999999"
             scale="0.8 0.1 0.8"
             position="0 0.021 0"
             change-position

@@ -56,30 +56,61 @@ const setColor = () => {
 
 AFRAME.registerComponent("change-instructions", {
   init: function () {
-    const instructions = Array.from(document.querySelectorAll(".instructions"));
-    this.el.addEventListener("click", () => {
-      let currentInstruction = instructions[INSTRUCTIONS_INDEX];
-      // console.log("second", currentInstruction);
-      currentInstruction.setAttribute("visible", "false");
-      if (this.el.getAttribute("id") == "nextButton") {
-        INSTRUCTIONS_INDEX++;
-        // console.log("next");
-      } else if (this.el.getAttribute("id") == "prevButton") {
-        INSTRUCTIONS_INDEX--;
-      }
-      currentInstruction = instructions[INSTRUCTIONS_INDEX];
-      currentInstruction.setAttribute("visible", "true");
-    });
-  },
-  update: function () {
-    if (INSTRUCTIONS_INDEX == 0 && this.el.getAttribute("id") == "prevButton") {
-      // console.log("before");
-      document
-        .getElementById("prevButton")
-        .removeAttribute("change-instructions");
-      // this.el.removeAttribute("change-instructions");
-      // this.el.removeAttribute("clickable");
+    if (this.el.getAttribute("id") == "prevButton") {
+      this.el.setAttribute("scale", "0 0 0");
     }
+    const instructions = Array.from(document.querySelectorAll(".instructions"));
+    const buttons = Array.from(document.querySelectorAll(".button"));
+    this.el.addEventListener("click", () => {
+      document.getElementById("globeModel").components.sound.playSound();
+      //changes instruction screen after clicking on a button
+      setTimeout(() => {
+        let currentInstruction = instructions[INSTRUCTIONS_INDEX];
+        currentInstruction.setAttribute("visible", "false");
+        if (this.el.getAttribute("id") == "nextButton") {
+          INSTRUCTIONS_INDEX++;
+        } else if (this.el.getAttribute("id") == "prevButton") {
+          INSTRUCTIONS_INDEX--;
+        }
+        currentInstruction = instructions[INSTRUCTIONS_INDEX];
+        currentInstruction.setAttribute("visible", "true");
+
+        buttons.forEach((button) => {
+          button.setAttribute("scale", "0.2 0 0.2");
+          if (
+            (INSTRUCTIONS_INDEX == 0 &&
+              button.getAttribute("id") == "prevButton") ||
+            (INSTRUCTIONS_INDEX == 2 &&
+              button.getAttribute("id") == "nextButton")
+          ) {
+            button.setAttribute("scale", "0 0 0");
+          }
+        });
+      }, 400);
+
+      // let currentInstruction = instructions[INSTRUCTIONS_INDEX];
+      // currentInstruction.setAttribute("visible", "false");
+      // if (this.el.getAttribute("id") == "nextButton") {
+      //   INSTRUCTIONS_INDEX++;
+      // } else if (this.el.getAttribute("id") == "prevButton") {
+      //   INSTRUCTIONS_INDEX--;
+      // }
+      // currentInstruction = instructions[INSTRUCTIONS_INDEX];
+      // currentInstruction.setAttribute("visible", "true");
+
+      // buttons.forEach((button) => {
+      //   button.setAttribute("scale", "0.2 0 0.2");
+      //   if (
+      //     (INSTRUCTIONS_INDEX == 0 &&
+      //       button.getAttribute("id") == "prevButton") ||
+      //     (INSTRUCTIONS_INDEX == 2 && button.getAttribute("id") == "nextButton")
+      //   ) {
+      //     button.setAttribute("scale", "0 0 0");
+      //   }
+      // });
+
+      //chooses which buttons are clickable
+    });
   },
 });
 

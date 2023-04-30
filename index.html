@@ -42,7 +42,7 @@
           src="assets/crystal/scene.gltf"
         ></a-asset-item>
         <a-asset-item id="floor2" src="assets/floor2/scene.gltf"></a-asset-item>
-        <a-asset-item id="globe" src="assets/sphere/scene.gltf"></a-asset-item>
+        <a-asset-item id="globe" src="assets/sphere/scene.gltf" ></a-asset-item>
 
         <a-asset-item
           id="forest"
@@ -102,6 +102,7 @@
           loop="true"
           
         ></audio>
+        <audio id="pageFlip" src="assets/page-flip.mp3" preload="auto"></audio>
       </a-assets>
 
       <!-- Camera and cursor position="-0.435 0 3"-->
@@ -142,7 +143,7 @@
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
-        
+
         <a-image
         class="instructions"
           src="#instructions3"
@@ -151,8 +152,8 @@
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
-        <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="-0.9 0.8 0.05965" rotation="90 0 0" change-instructions clickable></a-entity>
-        <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="0.1 0.8 0.05965" rotation="90 0 0" change-instructions clickable></a-entity>
+        <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="-0.9 0.8 0.05965" rotation="90 0 0" visible="true" change-instructions clickable></a-entity>
+        <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="0.1 0.8 0.05965" rotation="90 0 0" visible="true" change-instructions clickable></a-entity>
 
 
         <!-- sound -->
@@ -177,6 +178,7 @@
           position="-0.38713 -0.5 0.05965"
           rotation=""
           scale="0.01 0.01 0.01"
+          sound="src: #pageFlip"
         ></a-entity>
 
         <!-- Doorways: left = calm room; right = danager room-->
@@ -712,7 +714,7 @@
           sound="src:#birdChirps; autoplay: false;"
           visible="false"
         ></a-entity>
-
+        
         <a-sky src="assets/sky4.jpg"></a-sky>
 
         <!--Light-->

@@ -708,16 +708,31 @@
           material="color: #161313"
         ></a-image>
         <a-sky src="assets/redImage.jpeg"></a-sky>
-
-        <a-box
-          class="homeScene"
-          position="2 0.5 0.5"
-          rotation="0 45 0"
-          color="#f7050d"
-          material="shader:flat;"
-          change-scene
-          clickable
-        ></a-box>
+        <a-entity
+          id="gateModel"
+          gltf-model="assets/doorway/scene.gltf"
+          position="2 0 0.5"
+          scale="0.4 0.5 0.5"
+          rotation="0 90 0"
+        ></a-entity>
+            <a-box
+              id="cubeModel"
+              gltf-model="#cube"
+              position="2 0 0.5 "
+              height="0"
+              rotation="0 0 0"
+              scale="0.025 0.02 0.025"
+              animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
+              rotation="0 0 0"
+            ></a-box>
+                <a-entity class="homeScene"
+                position="1.6 1 0.5"
+                rotation="0 270 0"
+                color="#FFFFFF"
+                geometry="primitive:plane; height: 2.3; width: 1.2"
+                visible="false"
+                change-scene
+                clickable></a-entity>
       </a-entity>
 
       <!-- Calm Romm Scene -->
@@ -843,15 +858,31 @@
             clickable
           >
           </a-entity>
-          <a-box
-          class="homeScene"
-          position="2 0.5 0.5"
-          rotation="0 45 0"
-          color="#f7050d"
-          material="shader:flat;"
-          change-scene
-          clickable
-        ></a-box>
+          <a-entity
+          id="gateModel"
+          gltf-model="assets/doorway/scene.gltf"
+          position="2.40979 0 -2.654"
+          scale="1.2 1.2 1.2"
+          rotation="0 135 0"
+        ></a-entity>
+            <a-box
+              id="cubeModel"
+              gltf-model="#cube"
+              position="2.40979 0 -2.654"
+              height="0"
+              rotation="0 0 0"
+              scale="0.05 0.05 0.05"
+              animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
+              rotation="0 0 0"
+            ></a-box>
+                <a-entity class="homeScene"
+                position="2.1 1 -2.25"
+                rotation="0 315 0"
+                color="#FFFFFF"
+                geometry="primitive:plane; height: 8; width: 3.3"
+                visible="false"
+                change-scene
+                clickable></a-entity>
         </a-entity>
       </a-entity>
     </a-scene>

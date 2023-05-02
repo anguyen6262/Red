@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Red - Danger</title>
-    <meta name="description" content="Hello, World! - A-Frame" />
+    <title>Red</title>
+    <meta name="description" content="A-Frame" />
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
@@ -25,48 +25,25 @@
         <img id="redImage" src="assets/redImage.jpeg" />
         <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
         <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
-        <!-- <a-asset-item id="eggs" src="assets/eggs/scene.gltf"></a-asset-item> -->
         <a-asset-item id="gate" src="assets/doorway/scene.gltf"></a-asset-item>
         <a-asset-item id="lamp" src="assets/lamp/scene.gltf"></a-asset-item>
         <a-asset-item id="cube" src="assets/cubes/scene.gltf"></a-asset-item>
-        <a-asset-item
-          id="plant1"
-          src="assets/alien_plant/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="plant2"
-          src="assets/space_plant/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="plant3"
-          src="assets/crystal/scene.gltf"
-        ></a-asset-item>
+        <a-asset-item id="plant1" src="assets/alien_plant/scene.gltf"></a-asset-item>
+        <a-asset-item id="plant2" src="assets/space_plant/scene.gltf"></a-asset-item>
+        <a-asset-item id="plant3" src="assets/crystal/scene.gltf"></a-asset-item>
         <a-asset-item id="floor2" src="assets/floor2/scene.gltf"></a-asset-item>
         <a-asset-item id="globe" src="assets/sphere/scene.gltf" ></a-asset-item>
 
-        <a-asset-item
-          id="forest"
-          src="assets/low_poly_forest/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="house"
-          src="assets/little_house_in_the_forest/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="fox"
-          src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="fire"
-          src="assets/stage_campfire/scene.gltf"
-        ></a-asset-item>
+        <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
+        <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
+        <a-asset-item id="fox" src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"></a-asset-item>
+        <a-asset-item id="fire" src="assets/stage_campfire/scene.gltf"></a-asset-item>
 
         <!-- Images -->
         <img
           id="sign2"
           src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sign-dont-touch.jpg?v=1682566287493"
         />
-        
         <img
           id="instructions1"
           src="https://cdn.glitch.global/e4a5a081-1fb0-4701-9c59-6e2b1cdeb693/Instructions1.png?v=1682905744633"
@@ -81,6 +58,18 @@
           id="instructions3"
           src="https://cdn.glitch.global/e4a5a081-1fb0-4701-9c59-6e2b1cdeb693/Instructions3.png?v=1682905740549"
           material=" opacity: 0.0;transparent: true"
+        />
+        <img
+          id="homeSky"
+          src="assets/startPage/sky.jpeg"
+        />
+        <img
+          id="dangerSky"
+          src="assets/redImage.jpeg"
+        />
+        <img
+          id="calmSky"
+          src="assets/sky4.jpg"
         />
 
         <!-- Audio. -->
@@ -101,9 +90,11 @@
           src="assets/birds-19624.mp3"
           preload="auto"
           loop="true"
-          
         ></audio>
-        <audio id="pageFlip" src="assets/page-flip.mp3" preload="auto"></audio>
+        <audio 
+          id="pageFlip" 
+          src="assets/page-flip.mp3" 
+          preload="auto"></audio>
       </a-assets>
 
       <!-- Camera and cursor position="-0.435 0 3"-->
@@ -157,24 +148,15 @@
 
 
         <!-- sound -->
-        <!-- <a-entity sound="src: #ambience"></a-entity> -->
-
         <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="50" height="5" color="" shadow="" material="color: #0000FF" geometry="" sound="src: #ambience; autoplay: true; loop:true" visible="false"></a-entity>
 
         <!-- Default lighting injected by A-Frame. -->
         <a-entity
-          light="intensity: 1; type: ambient; angle: 60; color: #c1becb position="
-          1
-          5
-          1
-        ></a-entity>
-        <!-- <a-entity light="type: directional; color: #FFfF; intensity: 0.5 " position=" 1 1 1"></a-entity> -->
-
-        <!-- <a-sound src="#ambience" autoplay loop volume="0.5" position="0 2 -5"></a-sound> -->
+          light="intensity: 1; type: ambient; angle: 60; color: #c1becb;" ></a-entity>
 
         <a-entity
           id="globeModel"
-          gltf-model="assets/sphere/scene.gltf"
+          gltf-model="#globe"
           position="-0.38713 -0.5 0.05965"
           rotation=""
           scale="0.01 0.01 0.01"
@@ -184,14 +166,14 @@
         <!-- Doorways: left = calm room; right = danager room-->
         <a-entity
           id="gateModel"
-          gltf-model="assets/doorway/scene.gltf"
+          gltf-model="#gate"
           position="2.40979 0 -2.654"
           scale="0.4 0.5 0.5"
           rotation="0 135 0"
         ></a-entity>
         <a-entity
           id="gateModel"
-          gltf-model="assets/doorway/scene.gltf"
+          gltf-model="#gate"
           position="-3.27765 0 -2.65426"
           scale="0.4 0.5 0.5"
           rotation="0 45 0"
@@ -199,7 +181,7 @@
 
         <a-box
           class="dangerScene"
-          id="cubeModel"
+          id="homeCubeModel1"
           gltf-model="#cube"
           position="2.40979 0 -2.654"
           height="0"
@@ -207,12 +189,11 @@
           scale="0.02 0.02 0.02"
           animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
           rotation="0 0 0"
-          change-scene
-          clickable
+          visible="false"
         ></a-box>
         <a-box
           class="calmScene"
-          id="cubeModel"
+          id="homeCubeModel2"
           gltf-model="#cube"
           position="-3.27765 0 -2.65426"
           height="0"
@@ -220,12 +201,13 @@
           scale="0.02 0.02 0.02"
           animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
           rotation="0 0 0"
+          visible="false"
         ></a-box>
 
         <!-- trees -->
         <a-entity
           id="plant2Model"
-          gltf-model="assets/space_plant/scene.gltf"
+          gltf-model="#plant2"
           position="-6.13919 0 -2.41964"
           height="0"
           rotation=""
@@ -234,7 +216,7 @@
         ></a-entity>
         <a-entity
           id="plant2Model"
-          gltf-model="assets/space_plant/scene.gltf"
+          gltf-model="#plant2"
           position="-6.13919 0 -1.08964"
           height="0"
           rotation=""
@@ -243,7 +225,7 @@
         ></a-entity>
         <a-entity
           id="plant2Model"
-          gltf-model="assets/space_plant/scene.gltf"
+          gltf-model="#plant2"
           position="4.67956 0 -1.09"
           height="0"
           rotation=""
@@ -252,7 +234,7 @@
         ></a-entity>
         <a-entity
           id="plant2Model"
-          gltf-model="assets/space_plant/scene.gltf"
+          gltf-model="#plant2"
           position="4.57476 0 -2.39331"
           height="0"
           rotation=""
@@ -263,7 +245,7 @@
         <!-- Bushes -->
         <a-entity
         
-          gltf-model="assets/alien_plant/scene.gltf"
+          gltf-model="#plant1"
           position="-5.66155 0 -1.16071"
           height="0"
           rotation=""
@@ -272,7 +254,7 @@
         ></a-entity>
         <a-entity
         
-          gltf-model="assets/alien_plant/scene.gltf"
+          gltf-model="#plant1"
           position="3.98928 0 -1.31701"
           height="0"
           rotation=""
@@ -283,7 +265,7 @@
         <!-- Crystals -->
         <a-entity
        
-          gltf-model="assets/crystal/scene.gltf"
+          gltf-model="#plant3"
           position="-5.9482 0.09439 -0.87264"
           height="0"
           rotation="7.728627698519675 16.55618844810027 35.33258835233248"
@@ -291,7 +273,7 @@
         ></a-entity>
         <a-entity
        
-          gltf-model="assets/crystal/scene.gltf"
+          gltf-model="#plant3"
           position="4.21261 0 -1.04377"
           height="0"
           rotation="15.205726924976918 -12.578715434302094 -23.72732821195765"
@@ -301,7 +283,7 @@
         <!-- group -->
         <a-entity
         
-          gltf-model="assets/crystal/scene.gltf"
+          gltf-model="#plant3"
           position="-0.10461 0.0383 1.19456"
           height="0"
           rotation="-1.4902632251352712 -6.432024208138621 -17.060391307815394"
@@ -309,7 +291,7 @@
         ></a-entity>
         <a-entity
          
-          gltf-model="assets/crystal/scene.gltf"
+          gltf-model="#plant3"
           position="-0.27746 0.07845 1.36103"
           height="0"
           rotation="25.351090603358404 179.96833528177208 179.64003046516214"
@@ -317,7 +299,7 @@
         ></a-entity>
         <a-entity
          
-          gltf-model="assets/crystal/scene.gltf"
+          gltf-model="#plant3"
           position="-0.4515 0.1447 1.27379"
           height="0"
           rotation="1.7796069116763369 8.451700435974773 22.451924159996437"
@@ -334,7 +316,7 @@
           rotation="0 0 0"
           scale="10 0.205 10"
         ></a-circle>
-        <a-sky src="assets/startPage/sky.jpeg"></a-sky>
+        <a-sky src="#homeSky"></a-sky>
 
         <!-- Color Panel: orange, green, purple, blue, red, yellow -->
         <a-entity
@@ -398,7 +380,7 @@
           ></a-box>
         </a-entity>
         <a-entity
-          text="value: Please select a color!; align: center;"
+          text="value: Please select a color to activate portals!; align: center;"
           position="-0.4 1.3 -3.222"
           scale="3 3 1"
         ></a-entity>
@@ -415,6 +397,7 @@
         ></a-entity>
 
         <!-- black box that takes user to the danger room --->
+
         <!-- <a-box
           class="dangerScene"
           position="2.68777 2.24238 -2.5475"
@@ -425,23 +408,25 @@
           clickable
         ></a-box> -->
         <a-entity class="dangerScene"
+        id="portal1"
         position="2.3 1 -2.45"
         rotation="0 315 0"
         color="#FFFFFF"
         geometry="primitive:plane; height: 2; width: 1.3"
         visible="false"
         change-scene
-        clickable></a-entity>
+        ></a-entity>
 
 
         <a-entity class="calmScene"
+        id="portal2"
         position="-3.1 1 -2.5"
         rotation="0 40 0"
         color="#FFFFFF"
         geometry="primitive:plane; height: 2; width: 1.1"
         visible="false"
         change-scene
-        clickable></a-entity>
+        ></a-entity>
 
         <!-- <a-box
           class="calmScene"
@@ -576,7 +561,7 @@
         ></a-entity>
         <a-entity
           id="clockModel"
-          gltf-model="assets/clock/scene.gltf"
+          gltf-model="#clock"
           scale="0.01 0.01 0.01"
           rotation="0 180 0"
           position="-2.009 0.878 2.064"
@@ -707,10 +692,10 @@
           position="-9.4 1.6 -1.045"
           material="color: #161313"
         ></a-image>
-        <a-sky src="assets/redImage.jpeg"></a-sky>
+        <a-sky src="#dangerSky"></a-sky>
         <a-entity
           id="gateModel"
-          gltf-model="assets/doorway/scene.gltf"
+          gltf-model="#gate"
           position="2 0 0.5"
           scale="0.4 0.5 0.5"
           rotation="0 90 0"
@@ -860,7 +845,7 @@
           </a-entity>
           <a-entity
           id="gateModel"
-          gltf-model="assets/doorway/scene.gltf"
+          gltf-model="#gate"
           position="2.40979 0 -2.654"
           scale="1.2 1.2 1.2"
           rotation="0 135 0"

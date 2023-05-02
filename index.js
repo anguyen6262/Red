@@ -1,6 +1,7 @@
 let CLICK_TIME = 0; // variable to prevent the alarm from playing more than one time
 let INSTRUCTIONS_INDEX = 0;
-let ROOM_COLOR = "#ffffff"; //global variable
+let ROOM_COLOR = "NONE"; //global variable to set up different lights color
+let SELECTED_COLOR_BOO = false;
 const colors = {
   "#e89f02": "Orange",
   "#04ff00": "Green",
@@ -22,29 +23,31 @@ const alarm = new Howl({
   pos: [1.98666, 0.91235, 2.08887],
   loop: true,
 });
-// Changing global variable
+
+// Attribute that changes ROOM_COLOR global variable after clicking/fusing
 AFRAME.registerComponent("set-color", {
   init: function () {
     const colortext = document.getElementById("colorText");
     this.el.addEventListener("click", (evt) => {
       if (this.el.getAttribute("class") == "colorBox") {
         localStorage.setItem(ROOM_COLOR, this.el.getAttribute("color"));
-        console.log(colortext);
+        // console.log(colortext);
         colortext.setAttribute("text", {
           value: colors[localStorage.getItem(ROOM_COLOR)].toString(),
         });
         setColor();
+        activatePortals();
+        SELECTED_COLOR_BOO = true;
       }
     });
   },
 });
 
-//function that set the color of all components with class name `changeLight' to global variable
+// Function that set the color of all components with class name `changeLight' to global variable
 const setColor = () => {
   const lightSources = Array.from(document.querySelectorAll(".changeLight"));
   const currScene = document.getElementById("homeScene");
-  console.log("is it at home scene?", currScene.getAttribute("visible"));
-
+  // console.log("is it at home scene?", currScene.getAttribute("visible"));
   if (currScene.getAttribute("visible")) {
     lightSources.map((elem) => {
       if (elem.hasAttribute("light")) {
@@ -55,6 +58,7 @@ const setColor = () => {
   }
 };
 
+// Attribute that changes instructions in the home scene after clicking/fusing next or back button
 AFRAME.registerComponent("change-instructions", {
   init: function () {
     //The user does not have access to the prevButton on the first page
@@ -95,6 +99,7 @@ AFRAME.registerComponent("change-instructions", {
   },
 });
 
+// Attribute that changes scene after clicking/fusing assigned asset to do so
 AFRAME.registerComponent("change-scene", {
   init: function () {
     this.el.addEventListener("click", () => {
@@ -103,8 +108,10 @@ AFRAME.registerComponent("change-scene", {
       const calmMusic = document.getElementById("calmMusic");
       const clock = document.getElementById("clockModel");
       const homeMusic = document.getElementById("homeMusic");
-
-      scences.map((scene) => {
+      
+      if (SELECTED_COLOR_BOO) {
+        scences.map((scene) => {
+        // changes scene based on clicked asset
         if (this.el.getAttribute("class") == scene.getAttribute("id")) {
           scene.setAttribute("visible", "true");
           scene.setAttribute("position", "0 0 0");
@@ -112,6 +119,7 @@ AFRAME.registerComponent("change-scene", {
             "position",
             scenePos[scene.getAttribute("id")].toString()
           );
+          // activates compnents/elements from selected scene
           if (scene.getAttribute("id") == "dangerScene") {
             clock.components.sound.playSound();
             homeMusic.components.sound.stopSound();
@@ -125,15 +133,18 @@ AFRAME.registerComponent("change-scene", {
             calmMusic.components.sound.stopSound();
             clock.components.sound.stopSound();
           }
-        } else {
+        } else { //scene that is not selected, hided and changed position
           scene.setAttribute("visible", "false");
           scene.setAttribute("position", "10 10 10");
         }
       });
+      }
+      
     });
   },
 });
 
+// Attribute that stops animation from spyder
 AFRAME.registerComponent("stop-animation", {
   init: function () {
     this.el.addEventListener("animationcomplete", () => {
@@ -146,20 +157,17 @@ AFRAME.registerComponent("stop-animation", {
   },
 });
 
-//Function that handles the sounds
+// Attribute that handels different sounds for the scenes
 AFRAME.registerComponent("soundcontroller", {
   init: function () {
     let controlButton = this.el;
     controlButton.addEventListener("click", function (ev) {
       let currElem = ev.srcElement.id; //current element selected
       let speaker = document.getElementById("clockModel"); //reference to the ticking sound
-      // let alarmAudio = document.querySelector('#alarm-sound') //reference to the alarm sound
       let spider = document.querySelector("#spiderModel"); //reference to the spider
 
       if (currElem == "clockModel" && CLICK_TIME == 0) {
         speaker.components.sound.stopSound();
-        // stops ticking sound
-        // function that makes the alarm sound automatically play
         setInterval(codingCourse, 3000);
         function codingCourse() {
           if (CLICK_TIME == 0) {
@@ -167,7 +175,7 @@ AFRAME.registerComponent("soundcontroller", {
             alarm.play();
             speaker.components.sound.stopSound();
           }
-          CLICK_TIME += 1;
+          CLICK_TIME += 1; // global variable that prevents the user from clicking alarm sound again
         }
       }
       // stop alarm sound after first click
@@ -182,6 +190,7 @@ AFRAME.registerComponent("soundcontroller", {
   },
 });
 
+// Attribute that changes user position to an assets after clicking/fusing it
 AFRAME.registerComponent("change-position", {
   init: function () {
     const user = document.querySelector("#user-camera");
@@ -202,7 +211,6 @@ AFRAME.registerComponent("change-position", {
             newPos +
             "; dur: 700;"
         );
-        // console.log(user.getAttribute("position"));
       }
     });
   },
@@ -231,3 +239,20 @@ AFRAME.registerComponent("clickable", {
     });
   },
 });
+
+
+// function that makes portals assets visible
+const activatePortals = () => {
+    const cubes1 = document.getElementById("homeCubeModel1");
+    const cubes2 = document.getElementById("homeCubeModel2");
+    const portal1 = document.getElementById("portal1");
+    const portal2 = document.getElementById("portal2");
+    console.log(portal1);
+    console.log(portal2);
+
+    cubes1.setAttribute("visible", "true");
+    cubes2.setAttribute("visible", "true");
+
+    portal1.setAttribute("clickable", "")
+    portal2.setAttribute("clickable", "") 
+  };

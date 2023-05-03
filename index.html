@@ -98,7 +98,7 @@
       </a-assets>
 
       <!-- Camera and cursor position="-0.435 0 3"-->
-      <a-entity id="user-camera" rotation="0 0 0" position="-0.435 0 3">
+      <a-entity id="user-camera" rotation="0 180 0" position="-0.435 0 3">
         <a-camera camera look-controls position="0 1.6 0">
           <a-entity
             id="userCursor"
@@ -122,15 +122,17 @@
         <a-image
           class="instructions"
           src="#instructions1"
-          position="-0.32 2.1 0.05965"
+          position="-0.35 2.1 5.59"
           scale="4 4 1"
+          rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
         ></a-image>
         <a-image
         class="instructions"
           src="#instructions2"
-          position="-0.32 2.1 0.05965"
+          position="-0.35 2.1 5.59"
           scale="4 4 1"
+          rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
@@ -138,13 +140,14 @@
         <a-image
         class="instructions"
           src="#instructions3"
-          position="-0.32 2.1 0.05965"
+          position="-0.35 2.1 5.59"
           scale="4 4 1"
+          rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
-        <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="-0.9 0.8 0.05965" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
-        <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="0.1 0.8 0.05965" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
+          <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="0.25 0.75 5.59" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
+          <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="-0.8 0.75 5.59" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
 
 
         <!-- sound -->
@@ -157,7 +160,7 @@
         <a-entity
           id="globeModel"
           gltf-model="#globe"
-          position="-0.38713 -0.5 0.05965"
+          position="-0.309 -0.5 5.636"
           rotation=""
           scale="0.01 0.01 0.01"
           sound="src: #pageFlip"
@@ -284,7 +287,7 @@
         <a-entity
         
           gltf-model="#plant3"
-          position="-0.10461 0.0383 1.19456"
+          position="-0.10461 0.0383 4.89"
           height="0"
           rotation="-1.4902632251352712 -6.432024208138621 -17.060391307815394"
           scale="0.43647 0.43306 0.5"
@@ -292,7 +295,7 @@
         <a-entity
          
           gltf-model="#plant3"
-          position="-0.27746 0.07845 1.36103"
+          position="-0.27746 0.07845 4.970"
           height="0"
           rotation="25.351090603358404 179.96833528177208 179.64003046516214"
           scale="0.35144 0.35812 0.42351"
@@ -300,7 +303,7 @@
         <a-entity
          
           gltf-model="#plant3"
-          position="-0.4515 0.1447 1.27379"
+          position="-0.4515 0.1447 5.009"
           height="0"
           rotation="1.7796069116763369 8.451700435974773 22.451924159996437"
           scale="0.41996 0.38899 0.43388"
@@ -864,7 +867,7 @@
                 position="2.1 1 -2.25"
                 rotation="0 315 0"
                 color="#FFFFFF"
-                geometry="primitive:plane; height: 8; width: 3.3"
+                geometry="primitive:plane; height: 1; width: 1"
                 visible="false"
                 change-scene
                 clickable></a-entity>

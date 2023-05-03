@@ -22,7 +22,7 @@
           id="dangerRoom"
           src="assets/room1/scene.gltf"
         ></a-asset-item>
-        <img id="redImage" src="assets/redImage.jpeg" />
+        <!-- <img id="redImage" src="assets/redImage.jpeg" /> -->
         <a-asset-item id="spider" src="assets/spider/scene.gltf"></a-asset-item>
         <a-asset-item id="clock" src="assets/clock/scene.gltf"></a-asset-item>
         <a-asset-item id="gate" src="assets/doorway/scene.gltf"></a-asset-item>
@@ -61,15 +61,11 @@
         />
         <img
           id="homeSky"
-          src="assets/startPage/sky.jpeg"
-        />
-        <img
-          id="dangerSky"
-          src="assets/redImage.jpeg"
+          src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sky.jpeg?v=1683139551939"
         />
         <img
           id="calmSky"
-          src="assets/sky4.jpg"
+          src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sky4.jpg?v=1683139336567"
         />
 
         <!-- Audio. -->
@@ -244,10 +240,9 @@
           scale="0.007 0.007 0.007"
           visible=""
         ></a-entity>
-
+          
         <!-- Bushes -->
         <a-entity
-        
           gltf-model="#plant1"
           position="-5.66155 0 -1.16071"
           height="0"
@@ -264,7 +259,6 @@
           scale="0.07 0.07 0.07"
           visible=""
         ></a-entity>
-
         <!-- Crystals -->
         <a-entity
        
@@ -282,7 +276,7 @@
           rotation="15.205726924976918 -12.578715434302094 -23.72732821195765"
           scale="0.30769 0.5 0.5"
         ></a-entity>
-
+          
         <!-- group -->
         <a-entity
         
@@ -308,17 +302,17 @@
           rotation="1.7796069116763369 8.451700435974773 22.451924159996437"
           scale="0.41996 0.38899 0.43388"
         ></a-entity>
-
+          
         <!-- ground and sky -->
         <!-- <a-circle position="0 0 0" radius="8" rotation="-90 0 0" width="1" height="4" color=" #2d3344"  ></a-circle>  -->
-        <a-circle
+        <!-- <a-circle
           id="floorModel"
           gltf-model="#floor2"
           position="0 0 0"
           radius="8"
           rotation="0 0 0"
           scale="10 0.205 10"
-        ></a-circle>
+        ></a-circle> -->
         <a-sky src="#homeSky"></a-sky>
 
         <!-- Color Panel: orange, green, purple, blue, red, yellow -->
@@ -630,6 +624,13 @@
           scale="0.6 0.6 0.6"
         ></a-entity>
 
+        <a-entity 
+          geometry="" 
+          scale="0.5 3.5 4" 
+          material="color: #000000" 
+          position="4.21 1.426 0.515">
+        </a-entity>
+
         <!-- Asset to change position - further -->
         <a-entity
           class="changeLight"
@@ -649,6 +650,7 @@
           clickable
         >
         </a-entity>
+        
 
         <!-- Asset to change position - middle -->
         <a-entity
@@ -676,26 +678,27 @@
           id="change-position"
           light="angle: 20; color: #00e1ff; groundColor: #00e1ff; type: spot"
           rotation="-90 0 0"
-          position="0 2.2 0.5"
-          animation="property: position; to: 0 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
+          position="-2.4 2.2 0.5"
+          animation="property: position; to: -2.4 1.5 0.5; dur: 2000; easing: linear; loop: true; dir: alternate"
           change-position
         ></a-entity>
         <a-entity
           id="change-position"
           geometry="primitive: cylinder"
           scale="0.8 0.1 0.8"
-          position="0 0.021 0.5"
+          position="-2.4 0.021 0.5"
           change-position
           clickable
         >
         </a-entity>
 
+        
         <a-image
           src="#sign2"
           position="-9.4 1.6 -1.045"
-          material="color: #161313"
+          material="color: #787878"
         ></a-image>
-        <a-sky src="#dangerSky"></a-sky>
+        <!-- <a-sky src="#dangerSky"></a-sky> -->
         <a-entity
           id="gateModel"
           gltf-model="#gate"
@@ -766,7 +769,7 @@
           visible="false"
         ></a-entity>
         
-        <a-sky src="assets/sky4.jpg"></a-sky>
+        <a-sky src="#calmSky"></a-sky>
 
         <!--Light-->
         <a-entity

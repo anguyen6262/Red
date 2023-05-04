@@ -124,7 +124,7 @@ AFRAME.registerComponent("change-scene", {
               homeMusic.components.sound.stopSound();
             } else if (scene.getAttribute("id") == "calmScene") {
               scene.setAttribute("position", "0 2 0");
-
+              // setInterval("moveAround()", 16000) // line to call the function to randomly move the fox
               calmMusic.components.sound.playSound();
               homeMusic.components.sound.stopSound();
             } else {
@@ -254,3 +254,18 @@ const activatePortals = () => {
   portal1.setAttribute("clickable", "");
   portal2.setAttribute("clickable", "");
 };
+
+// Function that randomly animates/move the fox around - STILL NEEDS WORK
+const moveAround = () => {
+  const fox = document.getElementById("fox3");
+  let [foxX, foxY, foxZ] = fox.getAttribute("position");
+
+  let foxPos = foxX + " " + foxY + " " + foxZ; 
+
+  let newX = Math.floor(Math.random() * 10); // number 0-9
+  let newZ = Math.floor(Math.random() * 10); // number 0-9
+
+  let newPos = newX.toString() + " " + foxY + " " + newZ.toString();
+ 
+  fox.setAttribute("animation", "property: position; from: " + foxPos +  "; to: " +  newPos + "; dur: 10000;")
+}

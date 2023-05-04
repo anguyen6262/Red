@@ -122,7 +122,7 @@
         <a-image
           class="instructions"
           src="#instructions1"
-          position="-0.35 2.1 5.59"
+          position="-0.39163 2.60957 5.59"
           scale="4 4 1"
           rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
@@ -130,7 +130,7 @@
         <a-image
         class="instructions"
           src="#instructions2"
-          position="-0.35 2.1 5.59"
+          position="-0.39163 2.60957 5.59"
           scale="4 4 1"
           rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
@@ -140,7 +140,7 @@
         <a-image
         class="instructions"
           src="#instructions3"
-          position="-0.35 2.1 5.59"
+          position="-0.39163 2.60957 5.59"
           scale="4 4 1"
           rotation = "0 180 0"
           material="transparent:false; alphaTest: 0.5"
@@ -160,7 +160,7 @@
         <a-entity
           id="globeModel"
           gltf-model="#globe"
-          position="-0.309 -0.5 5.636"
+          position="-0.309 -0.02962 5.636"
           rotation=""
           scale="0.01 0.01 0.01"
           sound="src: #pageFlip"
@@ -229,7 +229,7 @@
         <a-entity
           id="plant2Model"
           gltf-model="#plant2"
-          position="4.67956 0 -1.09"
+          position="4.67956 -0.4953 -1.09"
           height="0"
           rotation=""
           scale="0.004 0.004 0.004"
@@ -238,7 +238,7 @@
         <a-entity
           id="plant2Model"
           gltf-model="#plant2"
-          position="4.57476 0 -2.39331"
+          position="4.57476 -0.29638 -2.39331"
           height="0"
           rotation=""
           scale="0.007 0.007 0.007"
@@ -257,7 +257,7 @@
         <a-entity
         
           gltf-model="#plant1"
-          position="3.98928 0 -1.31701"
+          position="3.97687 -0.51413 -1.47322"
           height="0"
           rotation=""
           scale="0.07 0.07 0.07"
@@ -275,37 +275,19 @@
         <a-entity
        
           gltf-model="#plant3"
-          position="4.21261 0 -1.04377"
+          position="4.21261 -0.2688 -1.04377"
           height="0"
           rotation="15.205726924976918 -12.578715434302094 -23.72732821195765"
           scale="0.30769 0.5 0.5"
         ></a-entity>
           
         <!-- group -->
-        <a-entity
-        
-          gltf-model="#plant3"
-          position="-0.10461 0.0383 4.89"
-          height="0"
-          rotation="-1.4902632251352712 -6.432024208138621 -17.060391307815394"
-          scale="0.43647 0.43306 0.5"
-        ></a-entity>
-        <a-entity
-         
-          gltf-model="#plant3"
-          position="-0.27746 0.07845 4.970"
-          height="0"
-          rotation="25.351090603358404 179.96833528177208 179.64003046516214"
-          scale="0.35144 0.35812 0.42351"
-        ></a-entity>
-        <a-entity
-         
-          gltf-model="#plant3"
-          position="-0.4515 0.1447 5.009"
-          height="0"
-          rotation="1.7796069116763369 8.451700435974773 22.451924159996437"
-          scale="0.41996 0.38899 0.43388"
-        ></a-entity>
+        <a-entity gltf-model="assets/crystal/scene.gltf" position="-0.54889 0.1447 4.49025" height="0" rotation="1.7796069116763369 8.451700435974773 22.451924159996437" scale="0.41996 0.38899 0.43388"></a-entity>
+
+<a-entity gltf-model="assets/crystal/scene.gltf" position="-0.36871 0.07845 4.50342" height="0" rotation="25.351090603358404 179.96833528177208 179.64003046516214" scale="0.35144 0.35812 0.42351"></a-entity>
+
+<a-entity gltf-model="assets/crystal/scene.gltf" position="-0.16966 0.0383 4.45384" height="0" rotation="-1.4902632251352714 -6.432024208138621 -17.060391307815394" scale="0.43647 0.43306 0.5"></a-entity>
+
           
         <!-- ground and sky -->
         <!-- <a-circle position="0 0 0" radius="8" rotation="-90 0 0" width="1" height="4" color=" #2d3344"  ></a-circle>  -->
@@ -321,9 +303,9 @@
 =======
         <a-circle
         id="floorModel"
-        position="0 -0.30687 0"        
+        position="0 0 0"        
         radius="8"
-        rotation="-87.31876797793745 90 -133.4751020380863"
+        rotation="-90 0 0"
         scale="2 2 1"
         material="src: #circleTexture;  color: #898c9a"
         ></a-circle>
@@ -717,7 +699,7 @@
         <a-entity
           id="gateModel"
           gltf-model="#gate"
-          position="2 0 0.5"
+          position="2 -0.307 0.5"
           scale="0.4 0.5 0.5"
           rotation="0 90 0"
         ></a-entity>
@@ -867,7 +849,7 @@
           <a-entity
           id="gateModel"
           gltf-model="#gate"
-          position="2.40979 0 -2.654"
+          position="2.40979 -0.307 -2.654"
           scale="1.2 1.2 1.2"
           rotation="0 135 0"
         ></a-entity>

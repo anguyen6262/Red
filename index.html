@@ -28,16 +28,37 @@
         <a-asset-item id="gate" src="assets/doorway/scene.gltf"></a-asset-item>
         <a-asset-item id="lamp" src="assets/lamp/scene.gltf"></a-asset-item>
         <a-asset-item id="cube" src="assets/cubes/scene.gltf"></a-asset-item>
-        <a-asset-item id="plant1" src="assets/alien_plant/scene.gltf"></a-asset-item>
-        <a-asset-item id="plant2" src="assets/space_plant/scene.gltf"></a-asset-item>
-        <a-asset-item id="plant3" src="assets/crystal/scene.gltf"></a-asset-item>
+        <a-asset-item
+          id="plant1"
+          src="assets/alien_plant/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="plant2"
+          src="assets/space_plant/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="plant3"
+          src="assets/crystal/scene.gltf"
+        ></a-asset-item>
         <a-asset-item id="floor2" src="assets/floor2/scene.gltf"></a-asset-item>
-        <a-asset-item id="globe" src="assets/sphere/scene.gltf" ></a-asset-item>
+        <a-asset-item id="globe" src="assets/sphere/scene.gltf"></a-asset-item>
 
-        <a-asset-item id="forest" src="assets/low_poly_forest/scene.gltf"></a-asset-item>
-        <a-asset-item id="house" src="assets/little_house_in_the_forest/scene.gltf"></a-asset-item>
-        <a-asset-item id="fox" src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"></a-asset-item>
-        <a-asset-item id="fire" src="assets/stage_campfire/scene.gltf"></a-asset-item>
+        <a-asset-item
+          id="forest"
+          src="assets/low_poly_forest/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="house"
+          src="assets/little_house_in_the_forest/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="fox"
+          src="assets/low_poly_fox_by_pixelmannen_animated/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="fire"
+          src="assets/stage_campfire/scene.gltf"
+        ></a-asset-item>
 
         <!-- Images -->
         <img
@@ -63,14 +84,9 @@
           id="homeSky"
           src="https://cdn.glitch.global/f0a7a4ea-8742-4fb8-a5c4-4a72666f702e/sky.jpeg?v=1683139551939"
         />
-        <img
-          id="calmSky"
-          src="assets\sky5.jpg"
-        />
+        <img id="calmSky" src="assets\sky5.jpg" />
 
-        <img 
-          id="circleTexture" 
-          src="assets/Dirt.jpg">
+        <img id="circleTexture" src="assets/Dirt.jpg" />
 
         <!-- Audio. -->
         <audio
@@ -91,10 +107,7 @@
           preload="auto"
           loop="true"
         ></audio>
-        <audio 
-          id="pageFlip" 
-          src="assets/page-flip.mp3" 
-          preload="auto"></audio>
+        <audio id="pageFlip" src="assets/page-flip.mp3" preload="auto"></audio>
       </a-assets>
 
       <!-- Camera and cursor position="-0.435 0 3"-->
@@ -116,46 +129,79 @@
 
       <!-- Home scence -->
       <a-entity class="scene" id="homeScene" position="0 0 0">
-
         <!-- instructions -->
-    
+
         <a-image
           class="instructions"
           src="#instructions1"
           position="-0.39163 2.60957 5.59"
           scale="4 4 1"
-          rotation = "0 180 0"
+          rotation="0 180 0"
           material="transparent:false; alphaTest: 0.5"
         ></a-image>
         <a-image
-        class="instructions"
+          class="instructions"
           src="#instructions2"
           position="-0.39163 2.60957 5.59"
           scale="4 4 1"
-          rotation = "0 180 0"
+          rotation="0 180 0"
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
-       
+
         <a-image
-        class="instructions"
+          class="instructions"
           src="#instructions3"
           position="-0.39163 2.60957 5.59"
           scale="4 4 1"
-          rotation = "0 180 0"
+          rotation="0 180 0"
           material="transparent:false; alphaTest: 0.5"
           visible="false"
         ></a-image>
-          <a-entity class="button" id="prevButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="0.25 0.75 5.59" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
-          <a-entity class="button" id="nextButton" material="color:#FFF" geometry="primitive: cylinder" scale="0.2 0 0.2" position="-0.8 0.75 5.59" rotation="90 0 0" visible="false" change-instructions clickable></a-entity>
-
+        <a-entity
+          class="button"
+          id="prevButton"
+          material="color:#FFF"
+          geometry="primitive: cylinder"
+          scale="0.2 0 0.2"
+          position="0.25 0.75 5.59"
+          rotation="90 0 0"
+          visible="false"
+          change-instructions
+          clickable
+        ></a-entity>
+        <a-entity
+          class="button"
+          id="nextButton"
+          material="color:#FFF"
+          geometry="primitive: cylinder"
+          scale="0.2 0 0.2"
+          position="-0.8 0.75 5.59"
+          rotation="90 0 0"
+          visible="false"
+          change-instructions
+          clickable
+        ></a-entity>
 
         <!-- sound -->
-        <a-entity id="homeMusic" position="0 0 -10" rotation="-90 0 0" width="1" height="1" color="" shadow="" material="color: #0000FF" geometry="" sound="src: #ambience; autoplay: true; loop:true" visible="false"></a-entity>
+        <a-entity
+          id="homeMusic"
+          position="0 0 -10"
+          rotation="-90 0 0"
+          width="1"
+          height="1"
+          color=""
+          shadow=""
+          material="color: #0000FF"
+          geometry=""
+          sound="src: #ambience; autoplay: true; loop:true"
+          visible="false"
+        ></a-entity>
 
         <!-- Default lighting injected by A-Frame. -->
         <a-entity
-          light="intensity: 1; type: ambient; angle: 60; color: #c1becb;" ></a-entity>
+          light="intensity: 1; type: ambient; angle: 60; color: #c1becb;"
+        ></a-entity>
 
         <a-entity
           id="globeModel"
@@ -228,36 +274,37 @@
         ></a-entity>
         <a-entity
           id="plant2Model"
-          gltf-model="#plant2"
-          position="4.67956 -0.4953 -1.09"
-          height="0"
-          rotation=""
-          scale="0.004 0.004 0.004"
-          visible=""
-        ></a-entity>
-        <a-entity
-          id="plant2Model"
-          gltf-model="#plant2"
-          position="4.57476 -0.29638 -2.39331"
+          gltf-model="assets/space_plant/scene.gltf"
+          position="4.57476 -0.01795 -2.39331"
           height="0"
           rotation=""
           scale="0.007 0.007 0.007"
           visible=""
         ></a-entity>
-          
+
+        <a-entity
+          id="plant2Model"
+          gltf-model="assets/space_plant/scene.gltf"
+          position="4.67956 -0.02911 -0.6903"
+          height="0"
+          rotation=""
+          scale="0.004 0.004 0.004"
+          visible=""
+        ></a-entity>
+
         <!-- Bushes -->
         <a-entity
-          gltf-model="#plant1"
-          position="-5.66155 0 -1.16071"
+          gltf-model="assets/alien_plant/scene.gltf"
+          position="-5.66155 0 -1.65142"
           height="0"
           rotation=""
           scale="0.07 0.07 0.07"
           visible=""
         ></a-entity>
+
         <a-entity
-        
-          gltf-model="#plant1"
-          position="3.97687 -0.51413 -1.47322"
+          gltf-model="assets/alien_plant/scene.gltf"
+          position="3.97687 -0.02255 -1.61522"
           height="0"
           rotation=""
           scale="0.07 0.07 0.07"
@@ -265,39 +312,53 @@
         ></a-entity>
         <!-- Crystals -->
         <a-entity
-       
-          gltf-model="#plant3"
-          position="-5.9482 0.09439 -0.87264"
+          gltf-model="assets/crystal/scene.gltf"
+          position="-5.58168 0.09439 -1.22962"
           height="0"
           rotation="7.728627698519675 16.55618844810027 35.33258835233248"
           scale="0.35095 0.45926 0.38535"
         ></a-entity>
+
         <a-entity
-       
-          gltf-model="#plant3"
-          position="4.21261 -0.2688 -1.04377"
+          gltf-model="assets/crystal/scene.gltf"
+          position="4.21261 0.27159 -1.12856"
           height="0"
           rotation="15.205726924976918 -12.578715434302094 -23.72732821195765"
           scale="0.30769 0.5 0.5"
         ></a-entity>
-          
+
         <!-- group -->
-        <a-entity gltf-model="assets/crystal/scene.gltf" position="-0.54889 0.1447 4.49025" height="0" rotation="1.7796069116763369 8.451700435974773 22.451924159996437" scale="0.41996 0.38899 0.43388"></a-entity>
+        <a-entity
+          gltf-model="assets/crystal/scene.gltf"
+          position="-0.4515 -0.10516 4.55552"
+          height="0"
+          rotation="1.7796069116763369 8.451700435974773 22.451924159996437"
+          scale="0.41996 0.38899 0.43388"
+        ></a-entity>
+        <a-entity
+          gltf-model="assets/crystal/scene.gltf"
+          position="-0.27746 -0.07332 4.21894"
+          height="0"
+          rotation="25.351090603358404 179.96833528177208 179.64003046516214"
+          scale="0.35144 0.35812 0.42351"
+        ></a-entity>
+        <a-entity
+          gltf-model="assets/crystal/scene.gltf"
+          position="-0.105 -0.03783 4.44999"
+          height="0"
+          rotation="-1.49 -6.432 -17.06"
+          scale="0.436 0.433 0.5"
+        ></a-entity>
 
-<a-entity gltf-model="assets/crystal/scene.gltf" position="-0.36871 0.07845 4.50342" height="0" rotation="25.351090603358404 179.96833528177208 179.64003046516214" scale="0.35144 0.35812 0.42351"></a-entity>
-
-<a-entity gltf-model="assets/crystal/scene.gltf" position="-0.16966 0.0383 4.45384" height="0" rotation="-1.4902632251352714 -6.432024208138621 -17.060391307815394" scale="0.43647 0.43306 0.5"></a-entity>
-
-          
         <!-- ground and sky -->
         <!-- <a-circle position="0 0 0" radius="8" rotation="-90 0 0" width="1" height="4" color=" #2d3344"  ></a-circle>  -->
         <a-circle
-        id="floorModel"
-        position="0 0 0"        
-        radius="8"
-        rotation="-90 0 0"
-        scale="2 2 1"
-        material="src: #circleTexture;  color: #898c9a"
+          id="floorModel"
+          position="0 0 0"
+          radius="8"
+          rotation="-90 0 0"
+          scale="2 2 1"
+          material="src: #circleTexture;  color: #898c9a"
         ></a-circle>
         <a-sky src="#homeSky"></a-sky>
 
@@ -390,25 +451,26 @@
           change-scene
           clickable
         ></a-box> -->
-        <a-entity class="dangerScene"
-        id="portal1"
-        position="2.3 1 -2.45"
-        rotation="0 315 0"
-        color="#FFFFFF"
-        geometry="primitive:plane; height: 2; width: 1.3"
-        visible="false"
-        change-scene
+        <a-entity
+          class="dangerScene"
+          id="portal1"
+          position="2.3 1 -2.45"
+          rotation="0 315 0"
+          color="#FFFFFF"
+          geometry="primitive:plane; height: 2; width: 1.3"
+          visible="false"
+          change-scene
         ></a-entity>
 
-
-        <a-entity class="calmScene"
-        id="portal2"
-        position="-3.1 1 -2.5"
-        rotation="0 40 0"
-        color="#FFFFFF"
-        geometry="primitive:plane; height: 2; width: 1.1"
-        visible="false"
-        change-scene
+        <a-entity
+          class="calmScene"
+          id="portal2"
+          position="-3.1 1 -2.5"
+          rotation="0 40 0"
+          color="#FFFFFF"
+          geometry="primitive:plane; height: 2; width: 1.1"
+          visible="false"
+          change-scene
         ></a-entity>
 
         <!-- <a-box
@@ -422,7 +484,7 @@
         ></a-box> -->
 
         <!-- Asset to change position -->
-        
+
         <a-entity position="-0.6 0 3">
           <a-entity
             class="changeLight"
@@ -459,7 +521,6 @@
           ></a-entity>
           <a-entity
             id="change-position"
-      
             geometry="primitive: cylinder"
             material="color:#999999"
             scale="0.8 0.1 0.8"
@@ -470,7 +531,6 @@
           </a-entity>
         </a-entity>
 
-        
         <a-entity position="-4.5 0.021 0.74761">
           <a-entity
             class="changeLight"
@@ -610,11 +670,12 @@
           scale="0.6 0.6 0.6"
         ></a-entity>
 
-        <a-entity 
-          geometry="" 
-          scale="0.5 3.5 4" 
-          material="color: #000000" 
-          position="4.21 1.426 0.515">
+        <a-entity
+          geometry=""
+          scale="0.5 3.5 4"
+          material="color: #000000"
+          position="4.21 1.426 0.515"
+        >
         </a-entity>
 
         <!-- Asset to change position - further -->
@@ -636,7 +697,6 @@
           clickable
         >
         </a-entity>
-        
 
         <!-- Asset to change position - middle -->
         <a-entity
@@ -678,7 +738,6 @@
         >
         </a-entity>
 
-        
         <a-image
           src="#sign2"
           position="-9.4 1.6 -1.045"
@@ -692,24 +751,26 @@
           scale="0.4 0.5 0.5"
           rotation="0 90 0"
         ></a-entity>
-            <a-box
-              id="cubeModel"
-              gltf-model="#cube"
-              position="2 0 0.5 "
-              height="0"
-              rotation="0 0 0"
-              scale="0.025 0.02 0.025"
-              animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
-              rotation="0 0 0"
-            ></a-box>
-                <a-entity class="homeScene"
-                position="1.6 1 0.5"
-                rotation="0 270 0"
-                color="#FFFFFF"
-                geometry="primitive:plane; height: 2.3; width: 1.2"
-                visible="false"
-                change-scene
-                clickable></a-entity>
+        <a-box
+          id="cubeModel"
+          gltf-model="#cube"
+          position="2 0 0.5 "
+          height="0"
+          rotation="0 0 0"
+          scale="0.025 0.02 0.025"
+          animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
+          rotation="0 0 0"
+        ></a-box>
+        <a-entity
+          class="homeScene"
+          position="1.6 1 0.5"
+          rotation="0 270 0"
+          color="#FFFFFF"
+          geometry="primitive:plane; height: 2.3; width: 1.2"
+          visible="false"
+          change-scene
+          clickable
+        ></a-entity>
       </a-entity>
 
       <!-- Calm Romm Scene -->
@@ -754,7 +815,7 @@
           sound="src:#birdChirps; autoplay: false;"
           visible="false"
         ></a-entity>
-        
+
         <a-sky src="#calmSky"></a-sky>
 
         <!--Light-->
@@ -836,30 +897,32 @@
           >
           </a-entity>
           <a-entity
-          id="gateModel"
-          gltf-model="#gate"
-          position="2.40979 -0.307 -2.654"
-          scale="1.2 1.2 1.2"
-          rotation="0 135 0"
-        ></a-entity>
-            <a-box
-              id="cubeModel"
-              gltf-model="#cube"
-              position="2.40979 0 -2.654"
-              height="0"
-              rotation="0 0 0"
-              scale="0.05 0.05 0.05"
-              animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
-              rotation="0 0 0"
-            ></a-box>
-                <a-entity class="homeScene"
-                position="2.1 1 -2.25"
-                rotation="0 315 0"
-                color="#FFFFFF"
-                geometry="primitive:plane; height: 8; width: 3.3"
-                visible="false"
-                change-scene
-                clickable></a-entity>
+            id="gateModel"
+            gltf-model="#gate"
+            position="2.40979 -0.307 -2.654"
+            scale="1.2 1.2 1.2"
+            rotation="0 135 0"
+          ></a-entity>
+          <a-box
+            id="cubeModel"
+            gltf-model="#cube"
+            position="2.40979 0 -2.654"
+            height="0"
+            rotation="0 0 0"
+            scale="0.05 0.05 0.05"
+            animation="property: rotation; to: 0 360 0 ; loop: true; dur: 10000"
+            rotation="0 0 0"
+          ></a-box>
+          <a-entity
+            class="homeScene"
+            position="2.1 1 -2.25"
+            rotation="0 315 0"
+            color="#FFFFFF"
+            geometry="primitive:plane; height: 8; width: 3.3"
+            visible="false"
+            change-scene
+            clickable
+          ></a-entity>
         </a-entity>
       </a-entity>
     </a-scene>

@@ -119,19 +119,19 @@ AFRAME.registerComponent("change-scene", {
               scenePos[scene.getAttribute("id")].toString()
             );
             // activates compnents/elements from selected scene
-            // if (scene.getAttribute("id") == "dangerScene") {
-            //   clock.components.sound.playSound();
-            //   homeMusic.components.sound.stopSound();
-            // } else if (scene.getAttribute("id") == "calmScene") {
-            //   scene.setAttribute("position", "0 2 0");
+            if (scene.getAttribute("id") == "dangerScene") {
+              clock.components.sound.playSound();
+              homeMusic.components.sound.stopSound();
+            } else if (scene.getAttribute("id") == "calmScene") {
+              scene.setAttribute("position", "0 2 0");
 
-            //   calmMusic.components.sound.playSound();
-            //   homeMusic.components.sound.stopSound();
-            // } else {
-            //   homeMusic.components.sound.playSound();
-            //   calmMusic.components.sound.stopSound();
-            //   clock.components.sound.stopSound();
-            // }
+              calmMusic.components.sound.playSound();
+              homeMusic.components.sound.stopSound();
+            } else {
+              homeMusic.components.sound.playSound();
+              calmMusic.components.sound.stopSound();
+              clock.components.sound.stopSound();
+            }
           } else {
             //scene that is not selected, hided and changed position
             scene.setAttribute("visible", "false");

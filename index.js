@@ -53,7 +53,6 @@ const setColor = () => {
       if (elem.hasAttribute("light")) {
         elem.setAttribute("light", { color: localStorage.getItem(ROOM_COLOR) });
       }
-      
     });
   }
 };
@@ -108,38 +107,38 @@ AFRAME.registerComponent("change-scene", {
       const calmMusic = document.getElementById("calmMusic");
       const clock = document.getElementById("clockModel");
       const homeMusic = document.getElementById("homeMusic");
-      
+
       if (SELECTED_COLOR_BOO) {
         scences.map((scene) => {
-        // changes scene based on clicked asset
-        if (this.el.getAttribute("class") == scene.getAttribute("id")) {
-          scene.setAttribute("visible", "true");
-          scene.setAttribute("position", "0 0 0");
-          user.setAttribute(
-            "position",
-            scenePos[scene.getAttribute("id")].toString()
-          );
-          // activates compnents/elements from selected scene
-          if (scene.getAttribute("id") == "dangerScene") {
-            clock.components.sound.playSound();
-            homeMusic.components.sound.stopSound();
-          } else if (scene.getAttribute("id") == "calmScene") {
-            scene.setAttribute("position", "0 2 0");
+          // changes scene based on clicked asset
+          if (this.el.getAttribute("class") == scene.getAttribute("id")) {
+            scene.setAttribute("visible", "true");
+            scene.setAttribute("position", "0 0 0");
+            user.setAttribute(
+              "position",
+              scenePos[scene.getAttribute("id")].toString()
+            );
+            // activates compnents/elements from selected scene
+            // if (scene.getAttribute("id") == "dangerScene") {
+            //   clock.components.sound.playSound();
+            //   homeMusic.components.sound.stopSound();
+            // } else if (scene.getAttribute("id") == "calmScene") {
+            //   scene.setAttribute("position", "0 2 0");
 
-            calmMusic.components.sound.playSound();
-            homeMusic.components.sound.stopSound();
+            //   calmMusic.components.sound.playSound();
+            //   homeMusic.components.sound.stopSound();
+            // } else {
+            //   homeMusic.components.sound.playSound();
+            //   calmMusic.components.sound.stopSound();
+            //   clock.components.sound.stopSound();
+            // }
           } else {
-            homeMusic.components.sound.playSound();
-            calmMusic.components.sound.stopSound();
-            clock.components.sound.stopSound();
+            //scene that is not selected, hided and changed position
+            scene.setAttribute("visible", "false");
+            scene.setAttribute("position", "10 10 10");
           }
-        } else { //scene that is not selected, hided and changed position
-          scene.setAttribute("visible", "false");
-          scene.setAttribute("position", "10 10 10");
-        }
-      });
+        });
       }
-      
     });
   },
 });
@@ -240,19 +239,18 @@ AFRAME.registerComponent("clickable", {
   },
 });
 
-
 // function that makes portals assets visible
 const activatePortals = () => {
-    const cubes1 = document.getElementById("homeCubeModel1");
-    const cubes2 = document.getElementById("homeCubeModel2");
-    const portal1 = document.getElementById("portal1");
-    const portal2 = document.getElementById("portal2");
-    console.log(portal1);
-    console.log(portal2);
+  const cubes1 = document.getElementById("homeCubeModel1");
+  const cubes2 = document.getElementById("homeCubeModel2");
+  const portal1 = document.getElementById("portal1");
+  const portal2 = document.getElementById("portal2");
+  console.log(portal1);
+  console.log(portal2);
 
-    cubes1.setAttribute("visible", "true");
-    cubes2.setAttribute("visible", "true");
+  cubes1.setAttribute("visible", "true");
+  cubes2.setAttribute("visible", "true");
 
-    portal1.setAttribute("clickable", "")
-    portal2.setAttribute("clickable", "") 
-  };
+  portal1.setAttribute("clickable", "");
+  portal2.setAttribute("clickable", "");
+};
